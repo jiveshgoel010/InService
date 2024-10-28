@@ -1,17 +1,16 @@
 /* eslint-disable no-unused-vars */
 import './App.css'
 import React from 'react'
-import { Route, createBrowserRouter, createRoutesFromElements, RouterProvider } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
+import Dashboard from './pages/Dashboard'
 
 const App = () => {
 
-  const router = createBrowserRouter(
-    
-  )
-
   return (
     <>
-
+      <Routes>
+        <Route path="/dashboard" element={<Dashboard/>} />
+      </Routes>
     </>
   )
 }
