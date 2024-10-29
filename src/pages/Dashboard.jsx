@@ -31,8 +31,8 @@ import {
    
 } from "@/components/ui/sidebar"
 
-import MySidebar from '../components/MySidebar'
-import Navbar from '../components/Navbar'
+import MySidebar from '../components/dashboard/MySidebar'
+import Navbar from '../components/dashboard/Navbar'
 
 const data = {
     user: {

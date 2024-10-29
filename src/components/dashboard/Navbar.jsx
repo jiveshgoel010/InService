@@ -1,28 +1,5 @@
-/* eslint-disable no-unused-vars */
-import React from 'react'
 import {
-    AudioWaveform,
-    BadgeCheck,
-    Bell,
-    BookOpen,
-    Bot,
-    ChevronRight,
-    ChevronsUpDown,
-    Command,
-    CreditCard,
-    Folder,
-    Forward,
-    Frame,
-    GalleryVerticalEnd,
-    LogOut,
-    Map,
-    MoreHorizontal,
-    PieChart,
-    Plus,
-    Settings2,
-    Sparkles,
-    SquareTerminal,
-    Trash2,
+   
 } from "lucide-react"
 
 import {

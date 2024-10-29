@@ -207,7 +207,7 @@ const data = {
 const MySidebar = () => {
 
     const [activeTeam, setActiveTeam] = useState(data.teams[0])
-    
+
     return (
         <>
             <Sidebar collapsible="icon">
