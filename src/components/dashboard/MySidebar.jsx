@@ -72,8 +72,7 @@ import {
     SidebarRail,
     SidebarTrigger,
 } from "@/components/ui/sidebar"
-import { useState } from "react"
-
+import { Link } from "react-router-dom"
 
 const data = {
     user: {
@@ -101,7 +100,7 @@ const data = {
     navMain: [
         {
             title: "Playground",
-            url: "#",
+            url: "/playground",
             icon: SquareTerminal,
             isActive: true,
             items: [
@@ -204,73 +203,16 @@ const data = {
     ],
 }
 
-const MySidebar = () => {
+const menuItems = {
 
-    const [activeTeam, setActiveTeam] = useState(data.teams[0])
+}
+
+const MySidebar = () => {
 
     return (
         <>
-            <Sidebar collapsible="icon">
-                <SidebarHeader>
-                    <SidebarMenu>
-                        <SidebarMenuItem>
-                            <DropdownMenu>
-                                <DropdownMenuTrigger asChild>
-                                    <SidebarMenuButton
-                                        size="lg"
-                                        className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
-                                    >
-                                        <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
-                                            <activeTeam.logo className="size-4" />
-                                        </div>
-                                        <div className="grid flex-1 text-left text-sm leading-tight">
-                                            <span className="truncate font-semibold">
-                                                {activeTeam.name}
-                                            </span>
-                                            <span className="truncate text-xs">
-                                                {activeTeam.plan}
-                                            </span>
-                                        </div>
-                                        <ChevronsUpDown className="ml-auto" />
-                                    </SidebarMenuButton>
-                                </DropdownMenuTrigger>
-                                <DropdownMenuContent
-                                    className="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg"
-                                    align="start"
-                                    side="bottom"
-                                    sideOffset={4}
-                                >
-                                    <DropdownMenuLabel className="text-xs text-muted-foreground">
-                                        Teams
-                                    </DropdownMenuLabel>
-                                    {data.teams.map((team, index) => (
-                                        <DropdownMenuItem
-                                            key={team.name}
-                                            onClick={() => setActiveTeam(team)}
-                                            className="gap-2 p-2"
-                                        >
-                                            <div className="flex size-6 items-center justify-center rounded-sm border">
-                                                <team.logo className="size-4 shrink-0" />
-                                            </div>
-                                            {team.name}
-                                            <DropdownMenuShortcut>⌘{index + 1}</DropdownMenuShortcut>
-                                        </DropdownMenuItem>
-                                    ))}
-                                    <DropdownMenuSeparator />
-                                    <DropdownMenuItem className="gap-2 p-2">
-                                        <div className="flex size-6 items-center justify-center rounded-md border bg-background">
-                                            <Plus className="size-4" />
-                                        </div>
-                                        <div className="font-medium text-muted-foreground">
-                                            Add team
-                                        </div>
-                                    </DropdownMenuItem>
-                                </DropdownMenuContent>
-                            </DropdownMenu>
-                        </SidebarMenuItem>
-                    </SidebarMenu>
-                </SidebarHeader>
-                <SidebarContent>
+            <Sidebar collapsible="icon" className="">
+                <SidebarContent className="hidden">
                     <SidebarGroup>
                         <SidebarGroupLabel>Platform</SidebarGroupLabel>
                         <SidebarMenu>
@@ -307,56 +249,56 @@ const MySidebar = () => {
                             ))}
                         </SidebarMenu>
                     </SidebarGroup>
-                    <SidebarGroup className="group-data-[collapsible=icon]:hidden">
-                        <SidebarGroupLabel>Projects</SidebarGroupLabel>
-                        <SidebarMenu>
-                            {data.projects.map((item) => (
-                                <SidebarMenuItem key={item.name}>
-                                    <SidebarMenuButton asChild>
-                                        <a href={item.url}>
-                                            <item.icon />
-                                            <span>{item.name}</span>
-                                        </a>
-                                    </SidebarMenuButton>
-                                    <DropdownMenu>
-                                        <DropdownMenuTrigger asChild>
-                                            <SidebarMenuAction showOnHover>
-                                                <MoreHorizontal />
-                                                <span className="sr-only">More</span>
-                                            </SidebarMenuAction>
-                                        </DropdownMenuTrigger>
-                                        <DropdownMenuContent
-                                            className="w-48 rounded-lg"
-                                            side="bottom"
-                                            align="end"
-                                        >
-                                            <DropdownMenuItem>
-                                                <Folder className="text-muted-foreground" />
-                                                <span>View Project</span>
-                                            </DropdownMenuItem>
-                                            <DropdownMenuItem>
-                                                <Forward className="text-muted-foreground" />
-                                                <span>Share Project</span>
-                                            </DropdownMenuItem>
-                                            <DropdownMenuSeparator />
-                                            <DropdownMenuItem>
-                                                <Trash2 className="text-muted-foreground" />
-                                                <span>Delete Project</span>
-                                            </DropdownMenuItem>
-                                        </DropdownMenuContent>
-                                    </DropdownMenu>
-                                </SidebarMenuItem>
+                </SidebarContent>
+
+                <SidebarContent className="bg-lightBlack text-white">
+                    <SidebarGroup>
+                        <div className="flex flex-col items-center gap-2">
+                            <div>
+                                <img
+                                    src="https://www.shutterstock.com/image-photo/smiling-african-american-millennial-businessman-600nw-1437938108.jpg"
+                                    alt=""
+                                    height="auto"
+                                    width="140"
+                                    className="rounded-full"
+                                />
+                            </div>
+
+                            <div className={`flex flex-col items-center transition-all group-data-[collapsible=icon]:hidden`}>
+                                <p className="text-xs">Welcome Back</p>
+                                <p className="font-semibold text-sm">Mark Johnson</p>
+                            </div>
+                        </div>
+                    </SidebarGroup>
+                </SidebarContent>
+
+                <SidebarContent className="bg-lightBlack text-white">
+                    <SidebarGroup>
+                        <SidebarMenu className="">
+                            {data.navMain.map((item) => (
+                                <Collapsible
+                                    key={item.title}
+                                    asChild
+                                    defaultOpen={item.isActive}
+                                    className="group/collapsible">
+                                    <SidebarMenuItem>
+                                        <Link to={item.url}>
+                                            <CollapsibleTrigger asChild>
+                                                <SidebarMenuButton                                            >
+                                                    {item.icon && <item.icon />}
+                                                    <span>{item.title}</span>
+                                                </SidebarMenuButton>
+                                            </CollapsibleTrigger>
+                                        </Link>
+
+                                    </SidebarMenuItem>
+                                </Collapsible>
                             ))}
-                            <SidebarMenuItem>
-                                <SidebarMenuButton className="text-sidebar-foreground/70">
-                                    <MoreHorizontal className="text-sidebar-foreground/70" />
-                                    <span>More</span>
-                                </SidebarMenuButton>
-                            </SidebarMenuItem>
                         </SidebarMenu>
                     </SidebarGroup>
                 </SidebarContent>
-                <SidebarFooter>
+
+                {/* <SidebarFooter>
                     <SidebarMenu>
                         <SidebarMenuItem>
                             <DropdownMenu>
@@ -441,7 +383,8 @@ const MySidebar = () => {
                             </DropdownMenu>
                         </SidebarMenuItem>
                     </SidebarMenu>
-                </SidebarFooter>
+                </SidebarFooter> */}
+
                 <SidebarRail />
             </Sidebar>
         </>
