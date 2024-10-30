@@ -1,16 +1,18 @@
-/* eslint-disable no-unused-vars */
-import React from 'react'
-import { Outlet } from 'react-router-dom'
+
+import { Outlet } from 'react-router-dom';
+import Navbar from '../components/landingPage/Navbar';
+import Footer from '../components/landingPage/Footer';
 
 const MainLayout = () => {
-  return (
-    <>
-      <main>
-        <Outlet />
-      </main>
-
-    </>
-  )
+    return (
+        <>
+            <Navbar />
+            <main className="flex-grow">
+                <Outlet />
+            </main>
+            <Footer />
+        </>
+    );
 }
 
-export default MainLayout
+export default MainLayout;
