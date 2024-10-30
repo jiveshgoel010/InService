@@ -1,14 +1,8 @@
 import {
-   
-} from "lucide-react"
-
-import {
     Breadcrumb,
     BreadcrumbItem,
     BreadcrumbLink,
     BreadcrumbList,
-    BreadcrumbPage,
-    BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
 
 import { Separator } from "@/components/ui/separator"
@@ -23,14 +17,10 @@ const Navbar = () => {
                     <Separator orientation="vertical" className="mr-2 h-4" />
                     <Breadcrumb>
                         <BreadcrumbList>
-                            <BreadcrumbItem className="hidden md:block">
+                            <BreadcrumbItem className="hidden md:block text-black font-semibold text-lg">
                                 <BreadcrumbLink href="#">
-                                    Building Your Application
+                                    My Dashboard
                                 </BreadcrumbLink>
-                            </BreadcrumbItem>
-                            <BreadcrumbSeparator className="hidden md:block" />
-                            <BreadcrumbItem>
-                                <BreadcrumbPage>Data Fetching</BreadcrumbPage>
                             </BreadcrumbItem>
                         </BreadcrumbList>
                     </Breadcrumb>
