@@ -69,8 +69,10 @@ export default {
 				lightBlue: '#82B7DC',
 				mediumBlue: '#3466AA',
 				darkBlue: '#114084'
-			
-			}
+			},
+			fontFamily: {
+				sans: ['Mona Sans', 'sans-serif']
+			},
 		}
 	},
 	plugins: [import("tailwindcss-animate")],
