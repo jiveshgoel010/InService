@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { HoverEffect } from "../../components/ui/card-hover-effect";
 
-function Home() {
+function Index() {
     const projects = [
         {
             title: "Digital Transformation",
@@ -63,4 +63,4 @@ function Home() {
     );
 }
 
-export default Home;
+export default Index;
