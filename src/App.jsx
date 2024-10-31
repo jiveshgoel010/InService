@@ -12,6 +12,8 @@ import MainLayout from './layouts/MainLayout'
 import Index from './pages/main/Index'
 import Home from './pages/main/Home'
 import About from './pages/main/About'
+import Contact from './pages/main/Contact'
+import Signup from './pages/main/Signup'
 
 const App = () => {
 
@@ -23,8 +25,11 @@ const App = () => {
           <Route path="home" element={<Home />} />
           <Route path="about" element={<About />} />
           {/* <Route path="services" element={<Services />} /> */}
-          {/* <Route path="contact" element={<Contact />} /> */}
+          <Route path="contact" element={<Contact />} />
         </Route>
+
+        <Route path="/signin" element={<h2>Login</h2>} />
+        <Route path="signup" element={<Signup/>} />
 
         <Route path="/dashboard" element={<DashboardLayout />}>
           <Route index element={<Dashboard />} />
