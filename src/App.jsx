@@ -16,6 +16,7 @@ import SingleCategory from './pages/main/SingleCategory'
 
 /* Testing */
 import TestLayout from './layouts/TestLayout'
+import SingleSellerPage from './components/main/SingleSellerPage'
 
 const App = () => {
 
@@ -33,6 +34,7 @@ const App = () => {
         <Route path="/test" element={<TestLayout />} >
           <Route index element={<Home />} />
           <Route path="singleCategory" element={<SingleCategory />} />
+          <Route path="singleSeller" element={<SingleSellerPage />} />
         </Route>
 
         {/* Dashboard */}

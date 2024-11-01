@@ -15,12 +15,14 @@ import { Link } from 'react-router-dom'
 const SingleCategory = () => {
     return (
         <>
-            
-            <SingleSellerCard/>
-            <SingleSellerCard
-                sellerName={"Simple IT Solutions"} 
-                sellerDescription={"seller descriptiom. Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores sint unde, vel cumque tempore dolorem et "}
-                sellerTags={["App", "Development", "Engineering"]}/>
+            {/* Cards for sellers in a single category */}
+            <div className="grid md:grid-cols-2">
+                <SingleSellerCard />
+                <SingleSellerCard
+                    sellerName={"Simple IT Solutions"}
+                    sellerDescription={"seller descriptiom. Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores sint unde, vel cumque tempore dolorem et "}
+                    sellerTags={["App", "Development", "Engineering"]} />
+            </div>
         </>
     )
 }

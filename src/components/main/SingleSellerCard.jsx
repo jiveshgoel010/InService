@@ -10,13 +10,13 @@ const SingleSellerCard = (
         sellerTags = ["Tag 1", "Tag 2", "Tag 3"]
     }) => {
         return (
-            <div className="border border-black m-2 grid justify-center rounded-md sm:grid-cols-2 md:w-1/3 md:grid-cols-1 lg:grid-cols-2 lg:w-1/2">
+            <div className="border border-black m-2 grid justify-center rounded-md sm:grid-cols-2 md:w md:grid-cols-1 lg:grid-cols-2">
                 <div className="flex">
                     <img src={sellerImg}
                         alt=""
                         className='object-cover self-center rounded-t-md lg:h-full lg:w-full lg:rounded-l-md' />
                 </div>
-                <div className="p-2 flex flex-col gap-2">
+                <div className="p-2 flex flex-col gap-2 min-h-[210px]">
                     <h2 className='text-sm font-medium'>{sellerName}</h2>
                     <p className='text-xs flex-wrap'>{sellerDescription}</p>
                     <div className="flex">
