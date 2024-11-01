@@ -14,6 +14,7 @@ import Home from './pages/main/Home'
 import About from './pages/main/About'
 import Contact from './pages/main/Contact'
 import Signup from './pages/main/Signup'
+import Signin from './pages/main/Signin'
 
 const App = () => {
 
@@ -28,7 +29,7 @@ const App = () => {
           <Route path="contact" element={<Contact />} />
         </Route>
 
-        <Route path="/signin" element={<h2>Login</h2>} />
+        <Route path="signin" element={<Signin/>} />
         <Route path="signup" element={<Signup/>} />
 
         <Route path="/dashboard" element={<DashboardLayout />}>
