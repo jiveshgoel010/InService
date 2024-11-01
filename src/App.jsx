@@ -12,25 +12,44 @@ import MainLayout from './layouts/MainLayout'
 import Index from './pages/main/Index'
 import Home from './pages/main/Home'
 import About from './pages/main/About'
+
 import Contact from './pages/main/Contact'
 import Signup from './pages/main/Signup'
 import Signin from './pages/main/Signin'
+import SingleCategory from './pages/main/SingleCategory'
+/* Testing */
+import TestLayout from './layouts/TestLayout'
+import SingleSellerPage from './components/main/SingleSellerPage'
 
 const App = () => {
 
   return (
     <>
       <Routes>
+        {/* Root */}
         <Route path="/" element={<MainLayout />}>
           <Route index element={<Index />} />
-          <Route path="home" element={<Home />} />
+          {/* <Route path="home" element={<Home />} /> */}
           <Route path="about" element={<About />} />
+
           {/* <Route path="services" element={<Services />} /> */}
           <Route path="contact" element={<Contact />} />
         </Route>
 
         <Route path="signin" element={<Signin/>} />
         <Route path="signup" element={<Signup/>} />
+
+
+        </Route>
+
+        {/* Testing */}
+        <Route path="/test" element={<TestLayout />} >
+          <Route index element={<Home />} />
+          <Route path="singleCategory" element={<SingleCategory />} />
+          <Route path="singleSeller" element={<SingleSellerPage />} />
+        </Route>
+
+        {/* Dashboard */}
 
         <Route path="/dashboard" element={<DashboardLayout />}>
           <Route index element={<Dashboard />} />

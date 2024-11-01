@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { HoverEffect } from "../../components/ui/card-hover-effect";
 
 function Index() {
+
   const projects = [
     {
       title: "Digital Transformation",
@@ -23,6 +24,25 @@ function Index() {
       link: "/",
     },
   ];
+
+    const projects = [
+        {
+            title: "Digital Transformation",
+            description: "We empower local businesses to thrive in the digital age. By transforming traditional operations with cutting-edge technology and online solutions, we help businesses transition from local to digital-first, boosting their visibility, efficiency, and growth potential.",
+            link: "/"
+        },
+        {
+            title: "Global Customer Acquisition",
+            description: "Going global is key to scaling any business. We specialize in helping businesses expand beyond local markets, connecting them with global customers through strategic digital marketing, e-commerce solutions, and targeted online campaigns, enabling businesses to grow their brand internationally.",
+            link: "/"
+        },
+        {
+            title: "Data-Driven Insights",
+            description: "Success in the digital world is fueled by informed decision-making. We provide data-driven insights and analytics to help businesses understand market trends, optimize their operations, and make smarter, real-time decisions, ensuring sustainable growth and competitiveness.",
+            link: "/"
+        }
+    ];
+
 
   return (
     <div className="flex flex-col gap-8">
