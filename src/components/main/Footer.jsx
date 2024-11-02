@@ -1,84 +1,104 @@
-import { FaTelegram, FaWhatsapp, FaInstagram } from 'react-icons/fa';
-import { Button } from '../ui/button';
+/* eslint-disable no-unused-vars */
+import { Pickaxe } from 'lucide-react'
+import SocialMediaLinks from './SocialMediaLinks'
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator } from '../ui/breadcrumb'
+import { MoveRight } from 'lucide-react'
 
 const Footer = () => {
-    const solutions = ["Web Design", "App Design", "Branding", "Web Development", "App Development", "Digital Marketing"];
-    const company = ["Our Works", "About InService", "Our Blogs", "Contact Us", "Book a consultation", "Get a quote"];
-
     return (
-        <footer className="w-full bg-White">
-            <div className="bg-black text-White p-4 flex justify-center">
-                <div className="w-full lg:w-4/5 flex flex-col lg:flex-row gap-10 mt-10 mb-10">
-                    <div className="lg:w-1/2 flex flex-col gap-10">
-                        <div>
-                            <p className="text-2xl lg:text-3xl font-bold">Solutions</p>
-                            <ul className="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-2 text-gray-300">
-                                {solutions.map((solution, index) => (
-                                    <li key={index} className="hover:text-lightBlue">{solution}</li>
-                                ))}
-                            </ul>
+        <div>
+            <footer className="bg-lightBlack text-white flex flex-col relative h-[750px]">
+                {/* Content */}
+                <div className="grid grid-cols-2  h-[550px]">
+                    <div className="flex flex-col justify-center items-center">
+                        <div className="w-full h-full flex justify-center items-center">
+                            <h1 className='flex gap-2 text-4xl font-bold'><Pickaxe size={48} />Inservice</h1>
                         </div>
-                        <div>
-                            <p className="text-2xl lg:text-3xl font-bold">Company</p>
-                            <ul className="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-2 text-gray-300">
-                                {company.map((comp, index) => (
-                                    <li key={index} className="hover:text-lightBlue">{comp}</li>
-                                ))}
-                            </ul>
+                        <div className="flex gap-4 w-full h-full justify-evenly items-start z-10 py-5">
+                            <div className='flex flex-col'>
+                                <h2 className="text-lg font-semibold mb-2">Resources</h2>
+                                <ul className='text-sm space-y-1'>
+                                    <li>Why Inservice?</li>
+                                    <li>Customer Stories</li>
+                                    <li>Blog</li>
+                                    <li>Guides</li>
+                                    <li>Webinars</li>
+                                    <li>Glossary</li>
+                                </ul>
+                            </div>
+                            <div className='flex flex-col'>
+                                <h2 className="text-lg font-semibold mb-2">Company</h2>
+                                <ul className='text-sm space-y-1'>
+                                    <li>About us</li>
+                                    <li>Careers</li>
+                                    <li>Leadership</li>
+                                    <li>Partners</li>
+                                    <li>Press</li>
+                                    <li>Contact Us</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-
-                    <div className="lg:w-1/2 flex flex-col lg:items-start gap-6">
-                        <img src="/logo.svg" alt="logo" className="aspect-ratio"/>
-                        
-                        <Button className="mt-4 mx-auto text-White bg-mediumBlue w-2/3 lg:w-1/3 hover:text-lightBlack hover:bg-White">Get Started</Button>
-                    </div>
-                </div>
-            </div>
-
-            <div className="bg-White text-black p-4 mt-4 flex justify-center">
-                <div className="w-full lg:w-4/5">
-                    <div className="bg-White text-gray-800 py-8">
-                        <div className="container mx-auto px-4">
-                            <div className="flex flex-col md:flex-row justify-between items-center md:items-start space-y-6 md:space-y-0">
-                                <div className="flex flex-col items-center md:items-start">
-                                    <div className="border-l-2 border-gray-300 pl-4">
-                                        <p>5 Brayford Square</p>
-                                        <p>London, E1 0SG</p>
-                                    </div>
-                                </div>
-                                <div className="flex flex-col items-center md:items-start">
-                                    <div className="border-l-2 border-gray-300 pl-4">
-                                        <p>T: +44 20 8144 9888</p>
-                                        <p>E: mail@inservice.com</p>
-                                    </div>
-                                </div>
-                                <div className="flex space-x-6">
-                                    <a href="#" className="flex flex-col items-center text-gray-600 hover:text-gray-900">
-                                        <FaTelegram size={30} />
-                                        <p className="mt-1 text-center">Telegram</p>
-                                    </a>
-                                    <a href="#" className="flex flex-col items-center text-gray-600 hover:text-gray-900">
-                                        <FaWhatsapp size={30} />
-                                        <p className="mt-1 text-center">WhatsApp</p>
-                                    </a>
-                                    <a href="#" className="flex flex-col items-center text-gray-600 hover:text-gray-900">
-                                        <FaInstagram size={30} />
-                                        <p className="mt-1 text-center">Instagram</p>
-                                    </a>
+                    <div className="flex flex-col gap-10 justify-start mt-16 items-center z-10">
+                        <div className="flex flex-col items-center gap-2 justify-center">
+                            <h1 className='text-2xl font-semibold'>Subscribe to our Newsletter</h1>
+                            <div className="flex">
+                                <input type="email" className='rounded-l-full py-2 px-4 h-[50px]' placeholder='Email...' />
+                                <div className='flex justify-center items-center border-2 size-[50px] rounded-r-full'>
+                                    <button className=''><MoveRight /></button>
                                 </div>
                             </div>
-                            <div className="flex flex-col sm:flex-row justify-around mt-8 text-sm text-gray-600 border-t border-gray-200 pt-4">
-                                <p>&copy; 2024 Inservice LTD</p>
-                                <a href="#" className="hover:text-gray-900">Terms & Conditions</a>
-                                <a href="#" className="hover:text-gray-900">Privacy Policy</a>
+                        </div>
+                        <div className="flex flex-col items-center justify-center">
+                            <h1 className='text-2xl font-semibold'>Follow Us</h1>
+                            <div className="">
+                                <SocialMediaLinks />
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </footer>
-    );
-};
+                <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 z-10 flex gap-10 px-10 py-6">
+                    <Breadcrumb>
+                        <BreadcrumbList>
+                            <BreadcrumbItem className="text-white">
+                                <BreadcrumbLink href="/">&copy; Inservice Pvt. Ltd.</BreadcrumbLink>
+                            </BreadcrumbItem>
+                            <BreadcrumbSeparator className="text-gray-500">
+                                |
+                            </BreadcrumbSeparator>
+                            <BreadcrumbItem className="text-white">
+                                <BreadcrumbLink href="/components">Support</BreadcrumbLink>
+                            </BreadcrumbItem>
+                            <BreadcrumbSeparator className="text-gray-500">
+                                |
+                            </BreadcrumbSeparator>
+                            <BreadcrumbItem className="text-white">
+                                <BreadcrumbLink href="/components">Privacy Policy</BreadcrumbLink>
+                            </BreadcrumbItem>
+                            <BreadcrumbSeparator className="text-gray-500">
+                                |
+                            </BreadcrumbSeparator>
+                            <BreadcrumbItem className="text-white">
+                                <BreadcrumbLink href="/components">Terms of Use</BreadcrumbLink>
+                            </BreadcrumbItem>
+                            <BreadcrumbSeparator className="text-gray-500">
+                                |
+                            </BreadcrumbSeparator>
+                            <BreadcrumbItem className="text-white">
+                                <BreadcrumbLink href="/components">Cookie Policy</BreadcrumbLink>
+                            </BreadcrumbItem>
+                        </BreadcrumbList>
+                    </Breadcrumb>
+                </div>
 
-export default Footer;
+                {/* Bottom Image */}
+                <div className="absolute bottom-0 w-full">
+                    <img src="/footerFinalFinal.png" alt="" className="w-full object-cover" />
+                </div>
+            </footer>
+        </div>
+
+    )
+}
+
+export default Footer
