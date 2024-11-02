@@ -1,13 +1,20 @@
 /* eslint-disable no-unused-vars */
-import { Link } from "react-router-dom";
 import { HoverEffect } from "../../components/ui/card-hover-effect";
+import { useEffect } from "react";
+import anime from 'animejs/lib/anime.es.js';
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel"
-import { Card, CardContent } from '../../components/ui/card'
+import { Card } from '../../components/ui/card'
 import Autoplay from "embla-carousel-autoplay"
+
+// sm	640px	
+// md	768px	
+// lg	1024px
+// xl	1280px
+// 2xl	1536px
 
 const cardData = [
   "Hire a social media manager",
@@ -38,18 +45,41 @@ const projects = [
     link: "/",
   },
 ];
+const headingText = "We connect People to bring Ideas into Life !!";
 
 function Index() {
+
+  useEffect(() => {
+    anime.timeline()
+      .add({
+        targets: '.animated-text .word',
+        opacity: [0, 1],
+        easing: 'easeInOutQuad',
+        duration: 2250,
+        delay: (el, i) => 150 * (i + 1),
+      })
+  }, []);
+
+  const words = headingText.split(' ');
+
+
   return (
     <div className="flex flex-col gap-8 p-4">
       {/* Hero Section */}
-      <div className="bg-white border border-gray-300 rounded-lg flex justify-between w-1/2 mx-auto">
+      <div className="bg-white border border-gray-300 rounded-lg flex justify-between mx-auto sm:w-3/4 md:w-3/4 lg:w-3/5 xl:w-1/2 my-6">
         <div className="flex flex-col gap-4 p-4">
           <div className="flex flex-col gap-2">
-            <h1 className="font-semibold text-4xl">We connect People to bring Ideas into Life !!</h1>
-            <h3 className="text-gray-600">Join a community where skills meet opportunity, transforming dreams into success.</h3>
+            <h1 className="animated-text font-semibold text-sm sm:text-2xl md:text-2xl lg:text-3xl xl:text-4xl flex flex-wrap">
+              {words.map((word, index) => (
+                <span key={index}>
+                  <span className="word">{word}&nbsp;</span>
+                  {index < words.length - 1 && ' '}
+                </span>
+              ))}
+            </h1>
+            <h3 className="text-gray-600 text-xs sm:text-sm lg:text-md xl:text-lg">Join a community where skills meet opportunity, transforming dreams into success.</h3>
           </div>
-          <div className="">
+          <div className="flex flex-col py-2">
             <Carousel
               opts={{
                 align: "start",
@@ -60,13 +90,13 @@ function Index() {
               plugins={[
                 Autoplay({ delay: 2500 }),
               ]}>
-              <CarouselContent className="-mt-1 h-[120px] flex flex-col items-start">
+              <CarouselContent className="-mt-1 h-[50px] flex flex-col items-start sm:h-[60px] lg:h-[100px]">
                 {cardData.map((item, index) => (
                   <CarouselItem key={index} className="pt-1 md:basis-1/10">
                     <div className="p-1 flex items-center justify-center"> {/* Added flex properties here */}
-                      <Card className="border border-gray-600 rounded-full h-[40px] w-auto"> {/* Set width to auto */}
+                      <Card className="border border-gray-600 rounded-full w-auto h-[30px] sm:h-[30px] md:h-[40px] lg:h-[]"> {/* Set width to auto */}
                         <div className="flex items-center justify-center h-full"> {/* Ensure the content is centered vertically */}
-                          <span className="text-gray-600 text-sm">&nbsp; &quot; {item} &quot; &nbsp;</span>
+                          <span className="text-gray-600 text-[10px] sm:text-[12px] xl:text-[14px]">&nbsp; &quot; {item} &quot; &nbsp;</span>
                         </div>
                       </Card>
                     </div>
@@ -77,7 +107,7 @@ function Index() {
           </div>
         </div>
         <div className="flex flex-col gap-4 p-4">
-          <img src="/asset-6.png" alt="" className="h-[]" />
+          <img src="/asset-6.png" alt="" className="h-full w-auto" />
         </div>
       </div>
 
