@@ -1,7 +1,5 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-"use client";
-
 import { useMotionValue, motion, useMotionTemplate } from "framer-motion";
 import React, { useState } from "react";
 import { CanvasRevealEffect } from "@/components/ui/canvas-reveal-effect";
@@ -33,7 +31,7 @@ export const CardSpotlight = ({
   return (
     (<div
       className={cn(
-        "group/spotlight p-10 rounded-md relative border border-neutral-800 bg-black dark:border-neutral-800",
+        "group/spotlight p-10 rounded-md relative border border-neutral-800 bg-lightBlack dark:border-neutral-800",
         className
       )}
       onMouseMove={handleMouseMove}
@@ -57,8 +55,10 @@ export const CardSpotlight = ({
             animationSpeed={5}
             containerClassName="bg-transparent absolute inset-0 pointer-events-none"
             colors={[
-              [59, 130, 246],
-              [139, 92, 246],
+              // [59, 130, 246],
+              // [139, 92, 246],
+              [191, 191, 191],
+              [255, 255, 255],
             ]}
             dotSize={8} />
         )}
