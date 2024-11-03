@@ -10,13 +10,13 @@ import Navbar from '@/components/main/Navbar';
 const TestLayout = () => {
     return (
         <>
-            <Navbar/>
-          
+            <Navbar />
+
             <main>
                 <Outlet />
             </main>
 
-            {/* <Footer /> */}
+            <Footer />
         </>
     );
 }

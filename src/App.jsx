@@ -28,10 +28,11 @@ const App = () => {
 
   return (
     <>
-      <Routes>
+      <Routes>  
         {/* Root */}
         <Route path="/" element={<MainLayout />}>
           <Route index element={<Index />} />
+          <Route path="home" element={<Home />} />
           <Route path="home" element={<Home />} />
           <Route path="about" element={<About />} />
           
