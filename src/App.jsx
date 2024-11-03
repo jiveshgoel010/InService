@@ -17,9 +17,12 @@ import Contact from './pages/main/Contact'
 import Signup from './pages/main/Signup'
 import Signin from './pages/main/Signin'
 import SingleCategory from './pages/main/SingleCategory'
+import { Test } from './pages/main/test'
+
 /* Testing */
 import TestLayout from './layouts/TestLayout'
 import SingleSellerPage from './components/main/SingleSellerPage'
+
 
 const App = () => {
 
@@ -29,18 +32,15 @@ const App = () => {
         {/* Root */}
         <Route path="/" element={<MainLayout />}>
           <Route index element={<Index />} />
-          {/* <Route path="home" element={<Home />} /> */}
+          <Route path="home" element={<Home />} />
           <Route path="about" element={<About />} />
-
+          
           {/* <Route path="services" element={<Services />} /> */}
           <Route path="contact" element={<Contact />} />
         </Route>
 
-        <Route path="signin" element={<Signin/>} />
-        <Route path="signup" element={<Signup/>} />
-
-
-        </Route>
+        <Route path="signin" element={<Signin />} />
+        <Route path="signup" element={<Signup />} />
 
         {/* Testing */}
         <Route path="/test" element={<TestLayout />} >
