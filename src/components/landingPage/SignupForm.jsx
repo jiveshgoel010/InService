@@ -1,9 +1,27 @@
-import { useState } from 'react';
+/* eslint-disable no-unused-vars */
 import { useForm } from 'react-hook-form';
+import { useState } from 'react';
+import { z } from 'zod';
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Link } from 'react-router-dom';
 
-export default function SignupForm() {
-  const { register, handleSubmit, watch, formState: { errors } } = useForm();
-  const [isGoogleSignup, setIsGoogleSignup] = useState(false);
+// Zod validation schema
+const validationSchema = z.object({
+  fullName: z.string().min(3, "Full name must be at least 3 characters long"),
+  userName: z.string().min(3, "Username must be at least 3 characters long"),
+  email: z.string().min(1, "Email is required").email("Invalid email address"),
+  password: z.string().min(3, "Password must be at least 3 characters long"),
+  address: z.string().min(1, "Address is required"),
+  phone: z.string().min(10).max(10, "Phone number must be 10 digits long"),
+  serviceName: z.string().min(3, "Service name must be at least 3 characters long"),
+  category: z.string().min(3, "Category must be at least 3 characters long"),
+  serviceDescription: z.string().min(3, "Service description must be at least 3 characters long"),
+});
+
+
+const SignupForm = () => {
+  const { register, handleSubmit, watch, formState: { errors } } = useForm({ resolver: zodResolver(validationSchema) });
+  const [type, setType] = useState("Client");
   const [termsAccepted, setTermsAccepted] = useState(false);
 
   const userType = watch("userType");
@@ -17,144 +35,90 @@ export default function SignupForm() {
     }
   };
 
-  const handleGoogleSignup = () => {
-    if (userType === "client") {
-      setIsGoogleSignup(true);
-      onSubmit(); // Run the onSubmit logic
-    } else {
-      alert("Google signup is only available for clients.");
-    }
-  };
-
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="max-w-xl mx-auto p-4 shadow-lg rounded-lg bg-white">
-      <p className="text-4xl text-center font-semibold mb-4">Sign Up</p>
-
-      {/* User Type Selection */}
-      <div className="mb-4">
-        <label className="block text-lightBlack font-semibold mb-2">Sign up as:</label>
-        <select
-          {...register("userType", { required: "Please select a user type" })}
-          className="border rounded-lg py-1 w-full"
-        >
-          <option value="">Select User Type</option>
-          <option value="client">Client</option>
-          <option value="vendor">Vendor</option>
-        </select>
-        {errors.userType && <span className="text-red-500">{errors.userType.message}</span>}
-      </div>
-
-      {/* Common Fields */}
-      <div className={`${userType === "client" || !userType ? 'block' : 'flex gap-10'}`}>
-        <div className={`mb-4 ${userType === "client" || !userType ? 'w-full' : 'w-1/2'}`}>
-          <label className="block text-lightBlack font-semibold mb-2">Full Name</label>
-          <input
-            {...register("fullName", { required: "Full name is required" })}
-            className="border rounded-lg py-1 w-full"
-            placeholder="Full Name"
-          />
-          {errors.fullName && <span className="text-red-500">{errors.fullName.message}</span>}
+    // <div className=''>
+    <form onSubmit={handleSubmit(onSubmit)}
+      className='w-[80%] min-h-full flex flex-col gap-3 items-center justify-center'>
+      {/* <h1 className="text-xl font-bold">Signup form</h1> */}
+      <div className="flex rounded-md border border-gray-300 mb-4">
+        <div
+          className={`font-semibold text-black px-8 py-1 rounded-md ${type === "Client" ? "bg-lightBlack text-white" : "text-black"} cursor-pointer`}
+          onClick={() => setType("Client")}>
+          Client
         </div>
-
-        <div className={`mb-4 ${userType === "client" || !userType ? 'w-full' : 'w-1/2'}`}>
-          <label className="block text-lightBlack font-semibold mb-2">Username</label>
-          <input
-            {...register("userName", { required: "Username is required" })}
-            className="border rounded-lg py-1 w-full"
-            placeholder="Username"
-          />
-          {errors.userName && <span className="text-red-500">{errors.userName.message}</span>}
+        <div
+          className={`font-semibold text-black px-8 py-1 rounded-md ${type === "Seller" ? "bg-lightBlack text-white" : "text-black"} cursor-pointer`}
+          onClick={() => setType("Seller")}>
+          Seller
         </div>
       </div>
+      <div className="flex flex-col gap-4 w-[75%]">
 
-      <div className={`${userType === "client" || !userType ? 'block' : 'flex gap-10'}`}>
-        <div className={`mb-4 ${userType === "client" || !userType ? 'w-full' : 'w-1/2'}`}>
-          <label className="block text-lightBlack font-semibold mb-2">Email</label>
-          <input
-            {...register("email", { required: "Email is required" })}
-            type="email"
-            className="border rounded-lg py-1 w-full"
-            placeholder="Email"
-          />
-          {errors.email && <span className="text-red-500">{errors.email.message}</span>}
+        <div className={`${type === "Seller" ? "flex flex-col gap-4" : "flex flex-col gap-4"}`}>
+
+          <div className="flex justify-between">
+            <div className="flex flex-col gap-1 w-[300px]">
+              <input type="text" name="fullName" placeholder='Full Name'
+                className='border border-gray-400 rounded-md px-2' {...register('fullName')} />
+              {errors.fullName && <span className="text-xs text-red-500">{errors.fullName.message}</span>}
+            </div>
+
+            <div className="flex flex-col gap-1 w-[300px]">
+              <input type="email" name="email" placeholder='Email address'
+                className='border border-gray-400 rounded-md px-2' {...register('email')} />
+              {errors.email && <span className="text-xs text-red-500">{errors.email.message}</span>}
+            </div>
+          </div>
+
+          <div className="flex justify-between">
+            <div className="flex flex-col gap-1 w-[300px]">
+              <input type="password" name="password" placeholder='Password'
+                className='border border-gray-400 rounded-md px-2' {...register('password')} />
+              {errors.password && <span className="text-xs text-red-500">{errors.password.message}</span>}
+            </div>
+
+            <div className="flex flex-col gap-1 w-[300px]">
+              <input type="password" name="confirmPassword" placeholder='Confirm Password'
+                className='border border-gray-400 rounded-md px-2' {...register('confirmPassword')} />
+              {errors.password && <span className="text-xs text-red-500">{errors.password.message}</span>}
+            </div>
+          </div>
         </div>
 
-        {!isGoogleSignup && (
-          <div className={`mb-4 ${userType === "client" || !userType ? 'w-full' : 'w-1/2'}`}>
-            <label className="block text-lightBlack font-semibold mb-2">Password</label>
-            <input
-              {...register("password", { required: "Password is required" })}
-              type="password"
-              className="border rounded-lg py-1 w-full"
-              placeholder="Password"
-            />
-            {errors.password && <span className="text-red-500">{errors.password.message}</span>}
+        <div className="flex justify-between">
+          <div className="flex flex-col gap-1 w-[300px]">
+            <input name="address" placeholder='Address' className={`border border-gray-400 rounded-md px-2 ${type === "Seller" ? "" : "hidden"}`} />
+            {type === "Seller" && errors.address && <span className="text-xs text-red-500">{errors.address.message}</span>}
           </div>
-        )}
+
+          <div className="flex flex-col gap-1 w-[300px]">
+            <input type="text" name="phone" placeholder='Phone number' {...register('phone')}
+              className={`border border-gray-400 rounded-md px-2 ${type === "Seller" ? "" : "hidden"}`} />
+            {type === "Seller" && errors.phone && <span className="text-xs text-red-500">{errors.phone.message}</span>}
+          </div>
+        </div>
+
+        <div className="flex justify-between">
+          <div className="flex flex-col gap-1 w-[300px]">
+            <input type="text" name="serviceName" placeholder='Service Name' {...register('serviceName')}
+              className={`border border-gray-400 rounded-md px-2 ${type === "Seller" ? "" : "hidden"}`} />
+            {type === "Seller" && errors.serviceName && <span className="text-xs text-red-500">{errors.serviceName.message}</span>}
+          </div>
+          <div className="flex flex-col gap-1 w-[300px]">
+            <input type="text" name="phone" placeholder='Category' {...register('category')}
+              className={`border border-gray-400 rounded-md px-2 ${type === "Seller" ? "" : "hidden"}`} />
+            {type === "Seller" && errors.category && <span className="text-xs text-red-500">{errors.category.message}</span>}
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-1">
+          <textarea type="text" name="phone" placeholder='Service Description' {...register('serviceDescription')}
+            className={`border border-gray-400 rounded-md px-2 ${type === "Seller" ? "" : "hidden"}`} />
+          {type === "Seller" && errors.serviceDescription && <span className="text-xs text-red-500">{errors.serviceDescription.message}</span>}
+        </div>
+
       </div>
-
-      {/* Vendor-Only Fields */}
-      {userType === "vendor" && (
-        <div>
-          <div className="flex gap-10">
-            <div className="mb-4 w-1/2">
-              <label className="block text-lightBlack font-semibold mb-2">Address</label>
-              <input
-                {...register("address", { required: "Address is required for vendors" })}
-                className="border rounded-lg py-1 w-full"
-                placeholder="Address"
-              />
-              {errors.address && <span className="text-red-500">{errors.address.message}</span>}
-            </div>
-            <div className="mb-4 w-1/2">
-              <label className="block text-lightBlack font-semibold mb-2">Phone Number</label>
-              <input
-                {...register("phone", { required: "Phone number is required for vendors" })}
-                className="border rounded-lg py-1 w-full"
-                placeholder="Phone Number"
-              />
-              {errors.phone && <span className="text-red-500">{errors.phone.message}</span>}
-            </div>
-          </div>
-
-          <div className="flex gap-10">
-            <div className="mb-4 w-1/2">
-              <label className="block text-lightBlack font-semibold mb-2">Service Name</label>
-              <input
-                {...register("serviceName", { required: "Service name is required for vendors" })}
-                className="border rounded-lg py-1 w-full"
-                placeholder="Service Name"
-              />
-              {errors.serviceName && <span className="text-red-500">{errors.serviceName.message}</span>}
-            </div>
-
-            <div className="mb-4 w-1/2">
-              <label className="block text-lightBlack font-semibold mb-2">Category of Service</label>
-              <select
-                {...register("category", { required: "Category is required for vendors" })}
-                className="border rounded-lg py-1 w-full"
-              >
-                <option value="">Select a Category</option>
-                {/* Add your service categories here */}
-              </select>
-              {errors.category && <span className="text-red-500">{errors.category.message}</span>}
-            </div>
-          </div>
-
-          <div className="mb-4">
-            <label className="block text-lightBlack font-semibold mb-2">Service Description</label>
-            <textarea
-              {...register("serviceDescription", { required: "Service description is required for vendors" })}
-              className="border rounded-lg py-1 w-full"
-              placeholder="Describe your service"
-            />
-            {errors.serviceDescription && <span className="text-red-500">{errors.serviceDescription.message}</span>}
-          </div>
-        </div>
-      )}
-
-      {/* Terms and Conditions Checkbox */}
-      <div className="flex items-center mb-4">
+      <div className="flex items-center">
         <input
           type="checkbox"
           checked={termsAccepted}
@@ -162,40 +126,27 @@ export default function SignupForm() {
           className="mr-2"
         />
         <label className="text-lightBlack font-semibold">
-          I accept the <a href="#" className="text-lightBlue underline">Terms and Conditions</a>
+          I accept the <Link href="#" className="text-mediumBlue underline">Terms and Conditions</Link>
         </label>
       </div>
-
-      {/* Signup Buttons */}
-      <div className="w-full mt-4">
-        <button
-          type="submit"
-          className={`bg-mediumBlue text-white px-4 py-2 rounded-lg w-full ${!termsAccepted
-            ? 'opacity-50 cursor-not-allowed'
-            : ''
+      <button
+        type="submit"
+        className={`bg-lightBlack text-white py-2 rounded-lg w-[300px] ${!termsAccepted
+          ? 'opacity-60 cursor-not-allowed'
+          : ''
           }`}
-          disabled={!termsAccepted}
-        >
-          Sign Up
-        </button>
-      </div>
+        disabled={!termsAccepted}>
+        Sign Up
+      </button>
+      
 
-      {/* Google Signup Button */}
-      {userType === "client" || !userType ? (
-        <div className="w-full mt-4">
-          <button
-            type="button"
-            onClick={handleGoogleSignup}
-            className={`bg-red-500 text-white px-4 py-2 rounded-lg w-full ${!termsAccepted
-              ? 'opacity-50 cursor-not-allowed'
-              : ''
-            }`}
-            disabled={!termsAccepted}
-          >
-            Sign Up with Google
-          </button>
-        </div>
-      ) : null}
+      <div className={`font-semibold`}>
+        <span>Already a member? </span>
+        <Link to="/signin" className='text-mediumBlue underline'>Login now</Link>
+      </div>
     </form>
+    // </div>
   );
 }
+
+export default SignupForm;

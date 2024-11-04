@@ -17,7 +17,7 @@ import Contact from './pages/main/Contact'
 import Signup from './pages/main/Signup'
 import Signin from './pages/main/Signin'
 import SingleCategory from './pages/main/SingleCategory'
-import { Test } from './pages/main/test'
+
 
 /* Testing */
 import TestLayout from './layouts/TestLayout'
