@@ -26,7 +26,7 @@ const Navbar = () => {
 
     return (
         <>
-            <div className='p-2'>
+            <div>
                 {/* Navbar */}
                 <div className="md:py-2 md:px-4">
                     <nav className='bg-lightBlack text-white flex justify-between items-center p-4 relative md:p-4 md:px-8 md:rounded-full ring-1 ring-white'>
