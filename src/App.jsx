@@ -23,6 +23,7 @@ import SingleCategory from './pages/main/SingleCategory'
 import TestLayout from './layouts/TestLayout'
 import SingleSellerPage from './components/main/SingleSellerPage'
 import ProfilePageVendor from './pages/main/ProfilePageVendor'
+import HireVendor from './pages/main/HireVendor'
 
 
 const App = () => {
@@ -37,6 +38,7 @@ const App = () => {
           <Route path="home" element={<Home />} />
           <Route path="about" element={<About />} />
           <Route path="profile" element={<ProfilePageVendor />} />
+          <Route path='hire' element={<HireVendor />} />
           
           {/* <Route path="services" element={<Services />} /> */}
           <Route path="contact" element={<Contact />} />
