@@ -12,6 +12,7 @@ import MainLayout from './layouts/MainLayout'
 import Index from './pages/main/Index'
 import Home from './pages/main/Home'
 import About from './pages/main/About'
+import SearchPage from './components/SearchPage/SearchPage'
 
 import Contact from './pages/main/Contact'
 import Signup from './pages/main/Signup'
@@ -35,6 +36,7 @@ const App = () => {
           <Route path="home" element={<Home />} />
           <Route path="home" element={<Home />} />
           <Route path="about" element={<About />} />
+          <Route path="search" element={<SearchPage />} />
           
           {/* <Route path="services" element={<Services />} /> */}
           <Route path="contact" element={<Contact />} />
