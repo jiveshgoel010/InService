@@ -45,6 +45,7 @@ const projects = [
     link: "/",
   },
 ];
+
 const headingText = "We connect People to bring Ideas into Life !!";
 
 function Index() {
@@ -124,7 +125,6 @@ function Index() {
           </p>
         </div>
       </section>
-
     </div>
   );
 }

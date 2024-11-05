@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
 import {
     Carousel,
@@ -179,50 +178,45 @@ function TopRatedClientCarousel() {
         3: 'w-1/3',
     };
     return (
-        <div className="w-full flex flex-col items-center">
-            <p className="text-2xl sm:text-4xl font-semibold w-[90%] mx-auto mb-5">
-                Only the Best for You: Meet Our Top-Rated Professionals
-            </p>
 
-            <div className="relative w-full flex justify-center">
-                <Carousel
-                    className="w-[90%] sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl"
-                    opts={{
-                        loop: false,
-                    }}
-                    plugins={[]}
-                >
-                    <CarouselContent className="flex">
-                        {chunkedData.map((group, index) => (
-                            <CarouselItem key={index} className="flex flex-wrap">
-                                {group.map((service, idx) => (
-                                    <div key={idx} className={`p-4 ${widthClass[chunkSize]}`}>
-                                        <TopRatedClientCard
-                                            name={service.name}
-                                            location={service.location}
-                                            servicename={service.servicename}
-                                            rate={service.rate}
-                                            stars={service.star}
-                                            projects={service.projects}
-                                            description={service.description}
-                                        />
-                                    </div>
-                                ))}
-                            </CarouselItem>
-                        ))}
-                    </CarouselContent>
 
-                    {/* Previous Button */}
-                    <CarouselPrevious className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white rounded-full p-2 hover:bg-gray-700 focus:outline-none">
-                        &lt;
-                    </CarouselPrevious>
+        <div className="relative w-full flex justify-center border rounded-xl items-center py-5">
+            <Carousel
+                // className="w-full sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl"
+                className="w-full"
+                opts={{
+                    loop: true,
+                }}>
+                <CarouselContent>
+                    {chunkedData.map((group, index) => (
+                        <CarouselItem key={index} className="flex">
+                            {group.map((service, idx) => (
+                                <div key={idx} className={`flex justify-center p-4 ${widthClass[chunkSize]}`}>
+                                    <TopRatedClientCard
+                                        name={service.name}
+                                        location={service.location}
+                                        servicename={service.servicename}
+                                        rate={service.rate}
+                                        stars={service.star}
+                                        projects={service.projects}
+                                        description={service.description}
+                                    />
+                                </div>
+                            ))}
+                        </CarouselItem>
+                    ))}
+                </CarouselContent>
 
-                    {/* Next Button */}
-                    <CarouselNext className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white rounded-full p-2 hover:bg-gray-700 focus:outline-none">
-                        &gt;
-                    </CarouselNext>
-                </Carousel>
-            </div>
+                {/* Previous Button */}
+                <CarouselPrevious className="hidden sm:inline-block absolute left-4 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white rounded-full p-2 hover:bg-gray-700 focus:outline-none">
+                    &lt;
+                </CarouselPrevious>
+
+                {/* Next Button */}
+                <CarouselNext className="hidden sm:inline-block absolute right-4 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white rounded-full p-2 hover:bg-gray-700 focus:outline-none">
+                    &gt;
+                </CarouselNext>
+            </Carousel>
         </div>
 
     )
