@@ -6,13 +6,13 @@ import { Route, Routes } from 'react-router-dom'
 /* Dashboard*/
 import DashboardLayout from './layouts/DashboardLayout'
 import Dashboard from './pages/dashboard/Dashboard'
-import Requests from './pages/dashboard/Requests'
 
 /* Main */
 import MainLayout from './layouts/MainLayout'
 import Index from './pages/main/Index'
 import Home from './pages/main/Home'
 import About from './pages/main/About'
+import SearchPage from './components/SearchPage/SearchPage'
 
 import Contact from './pages/main/Contact'
 import Signup from './pages/main/Signup'
@@ -25,22 +25,28 @@ import TestLayout from './layouts/TestLayout'
 import SingleSellerPage from './components/main/SingleSellerPage'
 import ProfilePageVendor from './pages/main/ProfilePageVendor'
 import HireVendor from './pages/main/HireVendor'
+import RequestHistory from './pages/main/RequestHistory'
 
 
 const App = () => {
 
   return (
     <>
-      <Routes>
+      <Routes>  
         {/* Root */}
         <Route path="/" element={<MainLayout />}>
           <Route index element={<Index />} />
           <Route path="home" element={<Home />} />
           <Route path="home" element={<Home />} />
           <Route path="about" element={<About />} />
+
+          <Route path="search" element={<SearchPage />} />
+
           <Route path="profile" element={<ProfilePageVendor />} />
           <Route path='hire' element={<HireVendor />} />
+          <Route path='requests' element={<RequestHistory />} />
 
+          
           {/* <Route path="services" element={<Services />} /> */}
           <Route path="contact" element={<Contact />} />
         </Route>
@@ -57,10 +63,8 @@ const App = () => {
 
         {/* Dashboard */}
 
-        <Route path="/dashboard/" element={<DashboardLayout />}>
+        <Route path="/dashboard" element={<DashboardLayout />}>
           <Route index element={<Dashboard />} />
-          <Route path='requests' element={<Requests />} />
-
           <Route path='transactions' element={<h2>transactions</h2>} />
         </Route>
 
