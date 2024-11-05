@@ -6,6 +6,7 @@ import { Route, Routes } from 'react-router-dom'
 /* Dashboard*/
 import DashboardLayout from './layouts/DashboardLayout'
 import Dashboard from './pages/dashboard/Dashboard'
+import Requests from './pages/dashboard/Requests'
 
 /* Main */
 import MainLayout from './layouts/MainLayout'
@@ -30,7 +31,7 @@ const App = () => {
 
   return (
     <>
-      <Routes>  
+      <Routes>
         {/* Root */}
         <Route path="/" element={<MainLayout />}>
           <Route index element={<Index />} />
@@ -39,7 +40,7 @@ const App = () => {
           <Route path="about" element={<About />} />
           <Route path="profile" element={<ProfilePageVendor />} />
           <Route path='hire' element={<HireVendor />} />
-          
+
           {/* <Route path="services" element={<Services />} /> */}
           <Route path="contact" element={<Contact />} />
         </Route>
@@ -56,8 +57,10 @@ const App = () => {
 
         {/* Dashboard */}
 
-        <Route path="/dashboard" element={<DashboardLayout />}>
+        <Route path="/dashboard/" element={<DashboardLayout />}>
           <Route index element={<Dashboard />} />
+          <Route path='requests' element={<Requests />} />
+
           <Route path='transactions' element={<h2>transactions</h2>} />
         </Route>
 

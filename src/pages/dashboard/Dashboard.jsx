@@ -5,6 +5,7 @@ import {
     LucidePercent
 } from "lucide-react"
 import React from "react"
+import { Outlet } from "react-router-dom"
 
 const Dashboard = () => {
     return (
@@ -34,6 +35,7 @@ const Dashboard = () => {
                 {/* <div className="min-h-[100vh] flex-1 rounded-xl md:min-h-min border border-black p-4">
                     hi
                 </div> */}
+                <Outlet/>
             </div>
         </>
     )

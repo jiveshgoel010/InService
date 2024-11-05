@@ -203,9 +203,32 @@ const data = {
     ],
 }
 
-const menuItems = {
-
-}
+const menuItems = [
+    {
+        title: "Dashboard",
+        url: "",
+        icon: Frame,
+        isActive: true
+    },
+    {
+        title: "Requests",
+        url: "requests",
+        icon: Forward,
+        isActive: true
+    },
+    {
+        title: "Projects",
+        url: "projects",
+        icon: Folder,
+        isActive: true
+    },
+    {
+        title: "Trash",
+        url: "trash",
+        icon: Trash2,
+        isActive: true
+    }
+]
 
 const MySidebar = () => {
 
@@ -216,13 +239,13 @@ const MySidebar = () => {
                     <SidebarGroup>
                         <SidebarGroupLabel>Platform</SidebarGroupLabel>
                         <SidebarMenu>
-                            {data.navMain.map((item) => (
+                            {/* {data.navMain.map((item) => ( */}
+                            {menuItems.map((item) => (
                                 <Collapsible
                                     key={item.title}
                                     asChild
                                     defaultOpen={item.isActive}
-                                    className="group/collapsible"
-                                >
+                                    className="group/collapsible">
                                     <SidebarMenuItem>
                                         <CollapsibleTrigger asChild>
                                             <SidebarMenuButton tooltip={item.title}>
@@ -233,15 +256,13 @@ const MySidebar = () => {
                                         </CollapsibleTrigger>
                                         <CollapsibleContent>
                                             <SidebarMenuSub>
-                                                {item.items?.map((subItem) => (
-                                                    <SidebarMenuSubItem key={subItem.title}>
-                                                        <SidebarMenuSubButton asChild>
-                                                            <a href={subItem.url}>
-                                                                <span>{subItem.title}</span>
-                                                            </a>
-                                                        </SidebarMenuSubButton>
-                                                    </SidebarMenuSubItem>
-                                                ))}
+                                                <SidebarMenuSubItem>
+                                                    <SidebarMenuSubButton asChild>
+                                                        <Link to={item.url}>
+                                                            <span>{item.title}</span>
+                                                        </Link>
+                                                    </SidebarMenuSubButton>
+                                                </SidebarMenuSubItem>
                                             </SidebarMenuSub>
                                         </CollapsibleContent>
                                     </SidebarMenuItem>
@@ -275,7 +296,7 @@ const MySidebar = () => {
                 <SidebarContent className="bg-lightBlack text-white">
                     <SidebarGroup>
                         <SidebarMenu className="">
-                            {data.navMain.map((item) => (
+                            {menuItems.map((item) => (
                                 <Collapsible
                                     key={item.title}
                                     asChild
@@ -284,13 +305,12 @@ const MySidebar = () => {
                                     <SidebarMenuItem>
                                         <Link to={item.url}>
                                             <CollapsibleTrigger asChild>
-                                                <SidebarMenuButton                                            >
+                                                <SidebarMenuButton>
                                                     {item.icon && <item.icon />}
                                                     <span>{item.title}</span>
                                                 </SidebarMenuButton>
                                             </CollapsibleTrigger>
                                         </Link>
-
                                     </SidebarMenuItem>
                                 </Collapsible>
                             ))}
@@ -298,7 +318,7 @@ const MySidebar = () => {
                     </SidebarGroup>
                 </SidebarContent>
 
-                {/* <SidebarFooter>
+                <SidebarFooter>
                     <SidebarMenu>
                         <SidebarMenuItem>
                             <DropdownMenu>
@@ -383,10 +403,11 @@ const MySidebar = () => {
                             </DropdownMenu>
                         </SidebarMenuItem>
                     </SidebarMenu>
-                </SidebarFooter> */}
+                </SidebarFooter>
 
                 <SidebarRail />
             </Sidebar>
+
         </>
     )
 }

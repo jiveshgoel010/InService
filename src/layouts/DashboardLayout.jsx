@@ -175,7 +175,6 @@ const DashboardLayout = () => {
                     <Outlet />
                 </SidebarInset>
             </SidebarProvider>
-
         </>
     )
 }
