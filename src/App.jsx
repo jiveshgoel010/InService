@@ -24,6 +24,7 @@ import TestLayout from './layouts/TestLayout'
 import SingleSellerPage from './components/main/SingleSellerPage'
 import ProfilePageVendor from './pages/main/ProfilePageVendor'
 import HireVendor from './pages/main/HireVendor'
+import RequestHistory from './pages/main/RequestHistory'
 
 
 const App = () => {
@@ -39,6 +40,7 @@ const App = () => {
           <Route path="about" element={<About />} />
           <Route path="profile" element={<ProfilePageVendor />} />
           <Route path='hire' element={<HireVendor />} />
+          <Route path='requests' element={<RequestHistory />} />
           
           {/* <Route path="services" element={<Services />} /> */}
           <Route path="contact" element={<Contact />} />
