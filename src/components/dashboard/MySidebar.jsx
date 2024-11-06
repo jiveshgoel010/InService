@@ -277,10 +277,10 @@ const MySidebar = () => {
                         <div className="flex flex-col items-center gap-2">
                             <div>
                                 <img
-                                    src="https://www.shutterstock.com/image-photo/smiling-african-american-millennial-businessman-600nw-1437938108.jpg"
+                                    src="/profile.png"
                                     alt=""
                                     height="auto"
-                                    width="140"
+                                    width="100"
                                     className="rounded-full"
                                 />
                             </div>

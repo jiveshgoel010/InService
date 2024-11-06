@@ -1,84 +1,291 @@
-import { FaTelegram, FaWhatsapp, FaInstagram } from 'react-icons/fa';
-import { Button } from '../ui/button';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Link } from 'react-router-dom';
+import axios from 'axios';
 
-const Footer = () => {
-    const solutions = ["Web Design", "App Design", "Branding", "Web Development", "App Development", "Digital Marketing"];
-    const company = ["Our Works", "About InService", "Our Blogs", "Contact Us", "Book a consultation", "Get a quote"];
+const baseSchema = z.object({
+  userType: z.string(),
+  fullName: z.string().min(3, "Full name must be at least 3 characters long"),
+  email: z.string().email("Invalid email address"),
+  password: z.string().min(3, "Password must be at least 3 characters long"),
+  termsAccepted: z.literal(true, {
+    errorMap: () => ({ message: "You must accept the terms and conditions" }),
+  }),
+});
 
-    return (
-        <footer className="w-full bg-White">
-            <div className="bg-black text-White p-4 flex justify-center">
-                <div className="w-full lg:w-4/5 flex flex-col lg:flex-row gap-10 mt-10 mb-10">
-                    <div className="lg:w-1/2 flex flex-col gap-10">
-                        <div>
-                            <p className="text-2xl lg:text-3xl font-bold">Solutions</p>
-                            <ul className="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-2 text-gray-300">
-                                {solutions.map((solution, index) => (
-                                    <li key={index} className="hover:text-lightBlue">{solution}</li>
-                                ))}
-                            </ul>
-                        </div>
-                        <div>
-                            <p className="text-2xl lg:text-3xl font-bold">Company</p>
-                            <ul className="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-2 text-gray-300">
-                                {company.map((comp, index) => (
-                                    <li key={index} className="hover:text-lightBlue">{comp}</li>
-                                ))}
-                            </ul>
-                        </div>
-                    </div>
+const clientSchema = baseSchema
+  .refine((data) => data.userType === 'Client', {
+    message: "Invalid user type",
+    path: ["userType"],
+  })
 
-                    <div className="lg:w-1/2 flex flex-col lg:items-start gap-6">
-                        <img src="/logo.svg" alt="logo" className="aspect-ratio"/>
-                        
-                        <Button className="mt-4 mx-auto text-White bg-mediumBlue w-2/3 lg:w-1/3 hover:text-lightBlack hover:bg-White">Get Started</Button>
-                    </div>
-                </div>
+const sellerSchema = baseSchema
+  .extend({
+    address: z.string().min(1, "Address is required"),
+    phone: z
+      .string()
+      .length(10, "Phone number must be 10 digits long")
+      .regex(/^\d+$/, "Phone number must contain only digits"),
+    serviceName: z
+      .string()
+      .min(3, "Service name must be at least 3 characters long"),
+    category: z
+      .string()
+      .min(3, "Category must be at least 3 characters long"),
+    serviceDescription: z
+      .string()
+      .min(3, "Service description must be at least 3 characters long"),
+  })
+  .refine((data) => data.userType === 'Seller', {
+    message: "Invalid user type",
+    path: ["userType"],
+  })
+
+const validationSchema = z.union([clientSchema, sellerSchema]);
+
+const SignupForm = () => {
+  const { register, handleSubmit, watch, formState: { errors } } = useForm({
+    resolver: zodResolver(validationSchema),
+    defaultValues: {
+      userType: "Client",
+      termsAccepted: false,
+    },
+  });
+
+  const userType = watch("userType");
+
+  const onSubmit = async (data) => {
+    
+    console.log("Form data:", data);
+    try {
+			const url = "http://localhost:8000/api/v1/clients/register";
+
+			axios.post(url, data )
+				.then((res) => console.log(res))
+				.catch((err) => console.log(err));
+
+			// if (!response.ok) {
+			//   throw new Error("Failed to register.");
+			// }
+
+			// const result = await response.json();
+			// console.log("Registration successful:", result);
+			// Optional: Redirect or show success message
+
+		} catch (error) {
+			console.error("Error during registration:", error);
+			alert("Registration failed. Please try again.");
+		}
+  };
+
+  return (
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className='w-[80%] min-h-full flex flex-col gap-3 items-center justify-center'
+    >
+      {/* User Type Selection */}
+      <div className="flex rounded-md border border-gray-300 mb-4">
+        <label className="flex items-center gap-2 p-2">
+          <input
+            type="radio"
+            value="Client"
+            {...register("userType")}
+            defaultChecked
+          />
+          Client
+        </label>
+        <label className="flex items-center gap-2 p-2">
+          <input
+            type="radio"
+            value="Seller"
+            {...register("userType")}
+          />
+          Seller
+        </label>
+      </div>
+
+      {/* Common Fields */}
+      <div className="flex flex-col gap-4 w-full max-w-md">
+        {/* Full Name */}
+        <div className="flex flex-col gap-1">
+          <input
+            type="text"
+            placeholder='Full Name'
+            className='border border-gray-400 rounded-md px-2 py-1'
+            {...register('fullName')}
+          />
+          {errors.fullName && (
+            <span className="text-xs text-red-500">
+              {errors.fullName.message}
+            </span>
+          )}
+        </div>
+
+        {/* Email */}
+        <div className="flex flex-col gap-1">
+          <input
+            type="email"
+            placeholder='Email address'
+            className='border border-gray-400 rounded-md px-2 py-1'
+            {...register('email')}
+          />
+          {errors.email && (
+            <span className="text-xs text-red-500">
+              {errors.email.message}
+            </span>
+          )}
+        </div>
+
+        {/* Password */}
+        <div className="flex flex-col gap-1">
+          <input
+            type="password"
+            placeholder='Password'
+            className='border border-gray-400 rounded-md px-2 py-1'
+            {...register('password')}
+          />
+          {errors.password && (
+            <span className="text-xs text-red-500">
+              {errors.password.message}
+            </span>
+          )}
+        </div>
+
+        {/* Confirm Password */}
+        <div className="flex flex-col gap-1">
+          {/* <input
+            type="password"
+            placeholder='Confirm Password'
+            className='border border-gray-400 rounded-md px-2 py-1'
+            {...register('confirmPassword')}
+          />
+          {errors.confirmPassword && (
+            <span className="text-xs text-red-500">
+              {errors.confirmPassword.message}
+            </span>
+          )} */}
+        </div>
+
+        {/* Seller-specific Fields */}
+        {userType === "Seller" && (
+          <>
+            {/* Address */}
+            <div className="flex flex-col gap-1">
+              <input
+                placeholder='Address'
+                className='border border-gray-400 rounded-md px-2 py-1'
+                {...register('address')}
+              />
+              {errors.address && (
+                <span className="text-xs text-red-500">
+                  {errors.address.message}
+                </span>
+              )}
             </div>
 
-            <div className="bg-White text-black p-4 mt-4 flex justify-center">
-                <div className="w-full lg:w-4/5">
-                    <div className="bg-White text-gray-800 py-8">
-                        <div className="container mx-auto px-4">
-                            <div className="flex flex-col md:flex-row justify-between items-center md:items-start space-y-6 md:space-y-0">
-                                <div className="flex flex-col items-center md:items-start">
-                                    <div className="border-l-2 border-gray-300 pl-4">
-                                        <p>5 Brayford Square</p>
-                                        <p>London, E1 0SG</p>
-                                    </div>
-                                </div>
-                                <div className="flex flex-col items-center md:items-start">
-                                    <div className="border-l-2 border-gray-300 pl-4">
-                                        <p>T: +44 20 8144 9888</p>
-                                        <p>E: mail@inservice.com</p>
-                                    </div>
-                                </div>
-                                <div className="flex space-x-6">
-                                    <a href="#" className="flex flex-col items-center text-gray-600 hover:text-gray-900">
-                                        <FaTelegram size={30} />
-                                        <p className="mt-1 text-center">Telegram</p>
-                                    </a>
-                                    <a href="#" className="flex flex-col items-center text-gray-600 hover:text-gray-900">
-                                        <FaWhatsapp size={30} />
-                                        <p className="mt-1 text-center">WhatsApp</p>
-                                    </a>
-                                    <a href="#" className="flex flex-col items-center text-gray-600 hover:text-gray-900">
-                                        <FaInstagram size={30} />
-                                        <p className="mt-1 text-center">Instagram</p>
-                                    </a>
-                                </div>
-                            </div>
-                            <div className="flex flex-col sm:flex-row justify-around mt-8 text-sm text-gray-600 border-t border-gray-200 pt-4">
-                                <p>&copy; 2024 Inservice LTD</p>
-                                <a href="#" className="hover:text-gray-900">Terms & Conditions</a>
-                                <a href="#" className="hover:text-gray-900">Privacy Policy</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            {/* Phone */}
+            <div className="flex flex-col gap-1">
+              <input
+                type="text"
+                placeholder='Phone number'
+                className='border border-gray-400 rounded-md px-2 py-1'
+                {...register('phone')}
+              />
+              {errors.phone && (
+                <span className="text-xs text-red-500">
+                  {errors.phone.message}
+                </span>
+              )}
             </div>
-        </footer>
-    );
+
+            {/* Service Name */}
+            <div className="flex flex-col gap-1">
+              <input
+                type="text"
+                placeholder='Service Name'
+                className='border border-gray-400 rounded-md px-2 py-1'
+                {...register('serviceName')}
+              />
+              {errors.serviceName && (
+                <span className="text-xs text-red-500">
+                  {errors.serviceName.message}
+                </span>
+              )}
+            </div>
+
+            {/* Category */}
+            <div className="flex flex-col gap-1">
+              <input
+                type="text"
+                placeholder='Category'
+                className='border border-gray-400 rounded-md px-2 py-1'
+                {...register('category')}
+              />
+              {errors.category && (
+                <span className="text-xs text-red-500">
+                  {errors.category.message}
+                </span>
+              )}
+            </div>
+
+            {/* Service Description */}
+            <div className="flex flex-col gap-1">
+              <textarea
+                placeholder='Service Description'
+                className='border border-gray-400 rounded-md px-2 py-1'
+                {...register('serviceDescription')}
+              />
+              {errors.serviceDescription && (
+                <span className="text-xs text-red-500">
+                  {errors.serviceDescription.message}
+                </span>
+              )}
+            </div>
+          </>
+        )}
+      </div>
+
+      {/* Terms and Conditions */}
+      <div className="flex items-center mt-4">
+        <input
+          type="checkbox"
+          {...register('termsAccepted')}
+          className="mr-2"
+        />
+        <label className="text-lightBlack font-semibold">
+          I accept the{" "}
+          <Link to="#" className="text-mediumBlue underline">
+            Terms and Conditions
+          </Link>
+        </label>
+      </div>
+      {errors.termsAccepted && (
+        <span className="text-xs text-red-500">
+          {errors.termsAccepted.message}
+        </span>
+      )}
+
+      {/* Submit Button */}
+      <button
+        type="submit"
+        className={`bg-lightBlack text-white py-2 rounded-lg w-full max-w-md mt-4 ${
+          !watch('termsAccepted') ? 'opacity-60 cursor-not-allowed' : ''
+        }`}
+        disabled={!watch('termsAccepted')}
+      >
+        Sign Up
+      </button>
+
+      {/* Sign In Link */}
+      <div className={`font-semibold mt-2`}>
+        <span>Already a member? </span>
+        <Link to="/signin" className="text-lightBlack">
+          Sign in
+        </Link>
+      </div>
+    </form>
+  );
 };
 
-export default Footer;
+export default SignupForm;

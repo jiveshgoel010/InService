@@ -19,14 +19,13 @@ import Signup from './pages/main/Signup'
 import Signin from './pages/main/Signin'
 import SingleCategory from './pages/main/SingleCategory'
 
-
-/* Testing */
-import TestLayout from './layouts/TestLayout'
 import SingleSellerPage from './components/main/SingleSellerPage'
 import ProfilePageVendor from './pages/main/ProfilePageVendor'
 import HireVendor from './pages/main/HireVendor'
 import RequestHistory from './pages/main/RequestHistory'
-
+import Requests from './pages/dashboard/Requests'
+import Profile from './pages/dashboard/Profile'
+import Test from './pages/main/Test'
 
 const App = () => {
 
@@ -46,6 +45,8 @@ const App = () => {
           <Route path='hire' element={<HireVendor />} />
           <Route path='requests' element={<RequestHistory />} />
 
+          {/* Testing page inside mainLayout */}
+          <Route path="test" element={<Test />} />
           
           {/* <Route path="services" element={<Services />} /> */}
           <Route path="contact" element={<Contact />} />
@@ -55,17 +56,18 @@ const App = () => {
         <Route path="signup" element={<Signup />} />
 
         {/* Testing */}
-        <Route path="/test" element={<TestLayout />} >
+        {/* <Route path="/test" element={<TestLayout />} >
           <Route index element={<Home />} />
           <Route path="singleCategory" element={<SingleCategory />} />
           <Route path="singleSeller" element={<SingleSellerPage />} />
-        </Route>
+        </Route> */}
 
         {/* Dashboard */}
 
         <Route path="/dashboard" element={<DashboardLayout />}>
           <Route index element={<Dashboard />} />
-          <Route path='transactions' element={<h2>transactions</h2>} />
+          <Route path='profile' element={<Profile/>} />
+          <Route path='requests' element={<Requests/>} />
         </Route>
 
         <Route path="*" element={<h2>Not found</h2>} />
