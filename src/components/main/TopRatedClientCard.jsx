@@ -1,13 +1,10 @@
 /* eslint-disable react/prop-types */
-
-import { Briefcase } from 'lucide-react';
-import { StarIcon } from 'lucide-react';
-import { Heart, BadgeIndianRupee } from 'lucide-react';
+import {
+  Briefcase,
+  StarIcon,
+  BadgeIndianRupee
+} from 'lucide-react';
 import { useState } from 'react';
-
-
-
-
 
 function TopRatedClientCard(props) {
   const { name, location, servicename, rate, stars, projects, description } = props;
@@ -18,18 +15,16 @@ function TopRatedClientCard(props) {
   };
   return (
     <div className='flex justify-center items-center'>
-
-      <div className=" w-2/3 sm:w-[45vw] md:w-[30vw] lg:w-[20vw] bg-white rounded-3xl mb-10 p-5 flex flex-col gap-5 shadow-lg">
+      <div className=" w-[280px] md:w-[300px] lg:w-[300px] bg-white rounded-3xl p-5 flex flex-col gap-5 shadow-lg border">
         <div className="flex justify-between items-center">
           <img src="/profile.png" alt="mission" className="w-10 h-10 rounded-full" />
           <div className="flex flex-col w-3/4">
             <span className="text-lg sm:text-xl font-semibold">{name}</span>
             <span className="text-gray-500 text-xs">{location}</span>
           </div>
-          <Heart />
         </div>
 
-        <p className="text-sm sm:text-base">
+        <p className={`text-sm sm:text-base ${!isExpanded ? 'line-clamp-2' : ''}`} onClick={toggleDescription} style={{ cursor: 'pointer' }} >
           {servicename}
         </p>
 
@@ -48,11 +43,11 @@ function TopRatedClientCard(props) {
           </div>
         </div>
 
-        <p className={`text-sm sm:text-base ${!isExpanded ? 'line-clamp-3' : ''}`} onClick={toggleDescription} style={{ cursor: 'pointer' }} >
+        <p className={`text-xs ${!isExpanded ? 'line-clamp-3' : ''}`} onClick={toggleDescription} style={{ cursor: 'pointer' }} >
           {description}
         </p>
 
-        <button className="border-2 border-mediumBlue text-mediumBlue w-full rounded-lg p-1 hover:bg-mediumBlue hover:text-white">
+        <button className="border-2 border-lightBlack text-lightBlack w-full rounded-lg p-1 hover:bg-lightBlack hover:text-white hover:font-semibold">
           Hire Me
         </button>
       </div>

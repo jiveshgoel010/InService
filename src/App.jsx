@@ -18,11 +18,14 @@ import Contact from './pages/main/Contact'
 import Signup from './pages/main/Signup'
 import Signin from './pages/main/Signin'
 import SingleCategory from './pages/main/SingleCategory'
-import { Test } from './pages/main/test'
+
 
 /* Testing */
 import TestLayout from './layouts/TestLayout'
 import SingleSellerPage from './components/main/SingleSellerPage'
+import ProfilePageVendor from './pages/main/ProfilePageVendor'
+import HireVendor from './pages/main/HireVendor'
+import RequestHistory from './pages/main/RequestHistory'
 
 
 const App = () => {
@@ -36,7 +39,13 @@ const App = () => {
           <Route path="home" element={<Home />} />
           <Route path="home" element={<Home />} />
           <Route path="about" element={<About />} />
+
           <Route path="search" element={<SearchPage />} />
+
+          <Route path="profile" element={<ProfilePageVendor />} />
+          <Route path='hire' element={<HireVendor />} />
+          <Route path='requests' element={<RequestHistory />} />
+
           
           {/* <Route path="services" element={<Services />} /> */}
           <Route path="contact" element={<Contact />} />

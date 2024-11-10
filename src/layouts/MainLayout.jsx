@@ -9,12 +9,13 @@ const MainLayout = () => {
     return (
         <>
             <div>
-                <BackgroundBeams className="-z-10"/>
+                <BackgroundBeams className="-z-10" />
                 <Navbar />
                 <main >
                     <Outlet />
                 </main>
                 <Footer />
+
             </div>
         </>
     );
