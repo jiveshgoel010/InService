@@ -8,9 +8,9 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 
-const Dropdown = ({ label, items = [] }) => {
+const Dropdown = ({ label, items = [],onChange }) => {
   return (
-    <Select>
+    <Select onValueChange={onChange}>
       <SelectTrigger className="w-[180px] m-3">
         <SelectValue placeholder={`Select a ${label}`} />
       </SelectTrigger>
@@ -35,6 +35,7 @@ Dropdown.propTypes = {
       label: PropTypes.string.isRequired,
     })
   ).isRequired,
+  onChange: PropTypes.func.isRequired,
 };
 
 export default Dropdown;
