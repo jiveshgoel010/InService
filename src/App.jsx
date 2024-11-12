@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import './App.css'
 import React from 'react'
+import { AuthProvider } from './context/AuthContext'
 import { Route, Routes } from 'react-router-dom'
 
 /* Dashboard*/
@@ -30,7 +31,7 @@ import Test from './pages/main/Test'
 const App = () => {
 
   return (
-    <>
+    <AuthProvider>
       <Routes>  
         {/* Root */}
         <Route path="/" element={<MainLayout />}>
@@ -39,7 +40,7 @@ const App = () => {
           <Route path="home" element={<Home />} />
           <Route path="about" element={<About />} />
 
-          <Route path="search" element={<SearchPage />} />
+          <Route path="search/:serviceName" element={<SearchPage />} />
 
           <Route path="profile" element={<ProfilePageVendor />} />
           <Route path='hire' element={<HireVendor />} />
@@ -52,7 +53,7 @@ const App = () => {
           <Route path="contact" element={<Contact />} />
         </Route>
 
-        <Route path="signin" element={<Signin />} />
+        <Route path="login" element={<Signin />} />
         <Route path="signup" element={<Signup />} />
 
         {/* Testing */}
@@ -72,7 +73,7 @@ const App = () => {
 
         <Route path="*" element={<h2>Not found</h2>} />
       </Routes>
-    </>
+    </AuthProvider>
   )
 }
 
