@@ -34,8 +34,6 @@ const Navbar = () => {
     setMenuOpen(!menuOpen)
   };
 
-
-
   const handleLogout = () => {
     logout();
     // Perform any additional logout logic here (e.g., clearing tokens)
