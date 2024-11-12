@@ -76,8 +76,8 @@ import { Link } from "react-router-dom"
 
 const data = {
     user: {
-        name: "shadcn",
-        email: "m@example.com",
+        name: "John Doe",
+        email: "johndoe@example.com",
         avatar: "/avatars/shadcn.jpg",
     },
     teams: [
@@ -332,7 +332,7 @@ const MySidebar = () => {
                                                 src={data.user.avatar}
                                                 alt={data.user.name}
                                             />
-                                            <AvatarFallback className="rounded-lg">CN</AvatarFallback>
+                                            <AvatarFallback className="rounded-lg">JD</AvatarFallback>
                                         </Avatar>
                                         <div className="grid flex-1 text-left text-sm leading-tight">
                                             <span className="truncate font-semibold">
@@ -359,7 +359,7 @@ const MySidebar = () => {
                                                     alt={data.user.name}
                                                 />
                                                 <AvatarFallback className="rounded-lg">
-                                                    CN
+                                                    JD
                                                 </AvatarFallback>
                                             </Avatar>
                                             <div className="grid flex-1 text-left text-sm leading-tight">
@@ -401,6 +401,7 @@ const MySidebar = () => {
                                     </DropdownMenuItem>
                                 </DropdownMenuContent>
                             </DropdownMenu>
+
                         </SidebarMenuItem>
                     </SidebarMenu>
                 </SidebarFooter>

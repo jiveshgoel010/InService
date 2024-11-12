@@ -1,25 +1,25 @@
-/* eslint-disable react/prop-types */
+    /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import { useState } from 'react';
 
-const RequestCard = ({ type, onAccept }) => {
+const RequestCard = ({ type, onAccept, title, description, startDate, endDate, amount, clientName, clientMail }) => {
 
     return (
         <div className="border border-black flex-grow-1 rounded-lg">
             <div className="flex flex-col gap-2 p-2">
-                <h1 className="text-xl font-semibold">Lorem, ipsum dolor.</h1>
+                <h1 className="text-xl font-semibold">{title}</h1>
                 <p className="text-gray-700 h-[120px] overflow-y-scroll scrollbar-hide">
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magni, nulla sint ratione eum illum eos nostrum sunt quia facere quis iusto nihil, aut maxime quo, repudiandae ab dignissimos iure beatae repellat obcaecati consequatur? Ratione, quidem laborum explicabo ex est itaque dignissimos debitis maxime corrupti labore ducimus. Cumque magni dicta autem!
+                    {description}
                 </p>
                 <hr />
                 <div>
-                    <h2 className="font-medium">15th May - 16th May</h2>
-                    <h3 className="text-gray-700">150 rupiya</h3>
+                    <h2 className="font-medium">{startDate} - {endDate}</h2>
+                    <h3 className="text-gray-700">{amount}</h3>
                 </div>
                 <hr />
                 <div>
-                    <h2 className="font-medium">Jivesh Goel</h2>
-                    <h3 className="text-gray-700">abc@gmail.com</h3>
+                    <h2 className="font-medium">{clientName}</h2>
+                    <h3 className="text-gray-700">{clientMail}</h3>
                 </div>
             </div>
             {type === 'open' && (
