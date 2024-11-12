@@ -4,12 +4,14 @@ import { useForm } from 'react-hook-form';
 import { Lightbulb, Timer, Tag, Calendar } from 'lucide-react';
 
 function HireVendor() {
-    const { register, handleSubmit, formState: { errors }, watch } = useForm();
+    const { register, handleSubmit, formState: { errors }, watch, reset } = useForm();
     const [paymentType, setPaymentType] = useState('hourly');
     const defaultHourlyRate = 50;
 
     const onSubmit = (data) => {
+
         console.log(data);
+        reset();
     };
 
     const validateMinWords = (value) => {

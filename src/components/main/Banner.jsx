@@ -30,12 +30,25 @@ function Banner() {
                     </CarouselPrevious>
 
                     <CarouselContent>
-                        {Array.from({ length: 5 }).map((_, index) => (
+                        {slides.map((slide, index) => (
                             <CarouselItem key={index} className="basis-full">
                                 <div className="p-1">
                                     <Card className="w-full h-48 sm:h-64 md:h-64 lg:h-64">
-                                        <CardContent className="w-full h-full flex items-center justify-center p-6">
-                                            <span className="text-4xl font-semibold">{index + 1}</span>
+                                        <CardContent
+                                            className="w-full h-full flex items-center gap-20 justify-center p-6 rounded-lg"
+                                            style={{
+                                                backgroundImage: `url(/backgrounbanner.jpg)`,
+                                                backgroundSize: 'cover',
+                                                backgroundPosition: 'center',
+                                                backgroundRepeat: 'no-repeat',
+                                            }}
+                                        >
+                                            <img src={slide.banner} alt="Banner" className="h-[15rem] w-[15rem]" />
+                                            <p>
+                                                <span className="text-4xl font-bold">{slide.title}</span>
+                                                <br />
+                                                <span className="text-xl">{slide.description}</span>
+                                            </p>
                                         </CardContent>
                                     </Card>
                                 </div>
@@ -51,6 +64,39 @@ function Banner() {
             </div>
         </div>
     )
+
+
+
 }
+
+const slides = [
+    {
+        
+        banner: '/plumberbanner.png',
+        title: 'Plumbing Services (50% Off)',
+        description: 'Get your plumbing issues fixed by the best plumbers in town!',
+    },
+    {
+        
+        banner: '/electricalBanner.png',
+        title: 'Electrical Services (30% Off)',
+        description: 'Expert electricians to solve all your electrical problems!',
+    },
+    {
+        banner: '/cleaningBanner.png',
+        title: 'Cleaning Services (20% Off)',
+        description: 'Professional cleaning services for your home and office!',
+    },
+    {
+        banner: '/gardeningBanner.png',
+        title: 'Gardening Services (40% Off)',
+        description: 'Top-notch gardening services to beautify your garden!',
+    },
+    {
+        banner: '/painterBanner.png',
+        title: 'Painting Services (25% Off)',
+        description: 'High-quality painting services for your home and office!',
+    },
+];
 
 export default Banner

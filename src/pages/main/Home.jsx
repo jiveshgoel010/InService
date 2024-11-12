@@ -7,6 +7,7 @@ import BecomeSeller from "@/components/main/BecomeSeller";
 import CompetitorChecking from "@/components/main/CompetitorChecking";
 import TopRatedClientCarousel from "@/components/main/TopRatedClientCarousel";
 import BentoGrid from "@/components/main/BentoGrid";
+import {useAuth} from "../../context/AuthContext"
 
 
 const words = ['Welcome to InService !', 'Hi, Tanmaya 👋🏻']
@@ -34,24 +35,24 @@ const Home = () => {
         });
     }, [currentWordIndex]);
 
-    const [isClient, setIsClient] = useState(false)
+   const {userType} = useAuth();
 
     return (
-        <div className=" w-full flex flex-col gap-20">
-            {/* <div className="px-10">
+        <div className=" w-full flex flex-col gap-20 mt-10">
+            <div className="px-10">
                 <h1 className="animated-text font-semibold text-sm sm:text-2xl md:text-2xl lg:text-3xl xl:text-4xl flex flex-wrap">
-                    <span className="word">{words[currentWordIndex]}</span>
+                    <span className="word text-mediumBlue p-4 border border-dashed rounded-lg">{words[currentWordIndex]}</span>
                 </h1>
-            </div> */}
+            </div>
 
-            {/* <Banner /> */}
+            <Banner />
             <div className="w-[92%] flex flex-col gap-4 mx-auto">
                 <h1 className="text-3xl font-bold">Hot Categories</h1>
                 <BentoGrid />
             </div>
 
             <div className="w-[92%] mx-auto">
-                {isClient ? <BecomeSeller /> : <CompetitorChecking />}
+                {userType=="Client" ? <BecomeSeller /> : <CompetitorChecking />}
             </div>
 
             <div className="w-[92%] mx-auto flex flex-col gap-4 mb-20">

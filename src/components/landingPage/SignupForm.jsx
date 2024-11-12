@@ -4,6 +4,7 @@ import { z } from 'zod';
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 // Base schema for common fields
 const baseSchema = z.object({
@@ -44,6 +45,8 @@ const sellerSchema = baseSchema.extend({
 const validationSchema = z.union([clientSchema, sellerSchema]);
 
 const SignupForm = () => {
+  const navigate = useNavigate();
+
   const { register, handleSubmit, watch, formState: { errors } } = useForm({
     resolver: zodResolver(validationSchema),
     defaultValues: {
@@ -62,15 +65,32 @@ const SignupForm = () => {
     try {
       const url =
         data.userType === "Client"
-          ? "http://localhost:8000/api/v1/clients/register"
-          : "http://localhost:8000/api/v1/vendors/register";
+          ? "http://localhost:8000/api/v1/clients/signup"
+          : "http://localhost:8000/api/v1/vendors/signup";
 
-      await axios
-        .post(url, {filteredData})
-        .then((res) => console.log(res.data))
-        .catch((err) => console.log(err.response?.data || err));
+         
 
-      console.log("Registration successful");
+          const sign = await axios
+          .post(url, { filteredData })
+          .then((res) => {
+            console.log(res.data.addressstatusCode); // Log the status code
+            return res.data;
+          })
+          .catch((err) => {
+            console.log(err.response?.data || err);
+            return err.response?.data || err;
+          });
+
+          
+
+      if (sign.statusCode === 201) {
+        
+        navigate('/login');
+
+        console.log("Registration successful");
+
+      }
+
 
     } catch (error) {
       console.error("Error during registration:", error);
