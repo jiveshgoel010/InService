@@ -1,80 +1,71 @@
+/* eslint-disable no-unused-vars */
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import JobCard from "./JobCard"; // Assuming you have a JobCard component
 import Dropdown from "./Dropdown";
 
-const jobData = [
+const homeServicesData = [
   {
-    postedTime: "9 minutes ago",
-    title: "React Native Partner Needed for Ongoing Mobile Projects",
-   
-    location: "India",
-    hourlyRate: "₹2200 - ₹4000",
-    estimatedTime: "More than 6 months, 30+ hrs/week",
-    description:
-      "We're a product studio with a strong focus on web and mobile applications, and we're looking for a reliable partner to take on some of our mobile development work. Tech Stack: Proficiency in Expo, React",
+    serviceName: "House Cleaning",
+    location: "Mumbai, India",
+    hourlyRate: "₹500 - ₹800",
+    experience: "2+ years",
+    description: "Professional house cleaning services to keep your home spotless and tidy. Our experienced cleaners use eco-friendly products to ensure a safe and clean environment.",
+    rating: 4.7,
+    category: "home_services",
+    vendorName: "Jivi Goel",
+    
+  },
+  {
+    serviceName: "Plumbing Services",
+    location: "Delhi, India",
+    hourlyRate: "₹700 - ₹1000",
+    experience: "5+ years",
+    description: "Expert plumbing services to fix leaks, unclog drains, and install new fixtures. Our skilled plumbers are available 24/7 to handle all your plumbing needs.",
     rating: 4.5,
-    category: "house_cleaning",
+    category: "home_services",
+    vendorName: "Suresh Patel",
   },
   {
-    postedTime: "18 minutes ago",
-    title: "Senior Blockchain developer for building a DeFi Dashboard",
-    
-    location: "India",
-    hourlyRate: "₹900 - ₹1000",
-    estimatedTime: "More than 6 months, Less than 30 hrs/week",
-    description:
-      "We are building a decentralized finance dashboard that shows unrealized profit and loss, which is the difference between what you paid for an investment in the past (cost) and what the investment is worth today (value). The goal of this project is to develop a platform similar to Zapper.",
-    rating: 4.0,
-    category: "carpentry",
+    serviceName: "Electrical Services",
+    location: "Bangalore, India",
+    hourlyRate: "₹600 - ₹900",
+    experience: "3+ years",
+    description: "Reliable electrical services for installations, repairs, and maintenance. Our certified electricians ensure your home's electrical systems are safe and efficient.",
+    rating: 4.6,
+    category: "home_services",
+    vendorName: "Amit Singh",
   },
   {
-    postedTime: "1 hour ago",
-    title: "Full Stack Developer for E-commerce Platform",
-   
-    location: "Remote",
-    hourlyRate: "₹1500 - ₹2500",
-    estimatedTime: "3 to 6 months, 20+ hrs/week",
-    description:
-      "We are looking for a full stack developer to help us build an e-commerce platform. The ideal candidate should have experience with React, Node.js, and MongoDB.",
+    serviceName: "Gardening Services",
+    location: "Chennai, India",
+    hourlyRate: "₹400 - ₹700",
+    experience: "4+ years",
+    description: "Professional gardening services to maintain your garden and landscape. Our gardeners provide planting, pruning, and lawn care to keep your outdoor space beautiful.",
     rating: 4.8,
-    category: "electrician",
+    category: "home_services",
+    vendorName: "Vinay Rao",
   },
   {
-    postedTime: "2 hours ago",
-    title: "UI/UX Designer for Mobile App",
-    
-    location: "USA",
-    hourlyRate: "₹2000 - ₹3000",
-    estimatedTime: "1 to 3 months, 10+ hrs/week",
-    description:
-      "We need a UI/UX designer to create a user-friendly interface for our mobile app. Experience with Figma and Adobe XD is required.",
-    rating: 3.9,
-    category: "plumbing",
-  },
-  {
-    postedTime: "3 hours ago",
-    title: "Backend Developer for API Integration",
-   
-    location: "UK",
-    hourlyRate: "₹1800 - ₹2800",
-    estimatedTime: "More than 6 months, 40+ hrs/week",
-    description:
-      "Looking for a backend developer to integrate third-party APIs into our system. Must be proficient in Python and Django.",
-    rating: 4.2,
-    category: "gardening",
+    serviceName: "Painting Services",
+    location: "Hyderabad, India",
+    hourlyRate: "₹800 - ₹1200",
+    experience: "6+ years",
+    description: "High-quality painting services for interior and exterior projects. Our experienced painters use premium paints to give your home a fresh and vibrant look.",
+    rating: 4.9,
+    category: "home_services",
+    vendorName: "Manoj Verma",
   },
 ];
 
+
 const JobList = ({ selectedCategory, priceRange,searchQuery }) => {
   const [filter, setFilter] = useState("newest");
-  const [filteredJobs, setFilteredJobs] = useState(jobData);
+  const [filteredJobs, setFilteredJobs] = useState(homeServicesData);
 
   useEffect(() => {
-    const sortedJobs = [...jobData].sort((a, b) => {
-      if (filter === "newest") {
-        return new Date(b.postedTime) - new Date(a.postedTime);
-      }
+    const sortedJobs = [...homeServicesData].sort((a, b) => {
+      
       if (filter === "trending") {
         return parseInt(b.hourlyRate.replace(/[^0-9]/g, "")) - parseInt(a.hourlyRate.replace(/[^0-9]/g, ""));
       }
@@ -97,7 +88,7 @@ const JobList = ({ selectedCategory, priceRange,searchQuery }) => {
         (selectedCategory === "all" || selectedCategory === "" || job.category === selectedCategory) &&
         maxRate >= minPrice &&
         minRate <= maxPrice&&
-        (searchQuery === "" || job.title.toLowerCase().includes(searchQuery.toLowerCase()) || job.description.toLowerCase().includes(searchQuery.toLowerCase()))
+        (searchQuery === "" || job.serviceName.toLowerCase().includes(searchQuery.toLowerCase()) || job.description.toLowerCase().includes(searchQuery.toLowerCase()))
 
       );
     });

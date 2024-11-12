@@ -46,7 +46,7 @@ function ProfilePageVendor() {
                         </div>
                     </div>
                     <div className='flex gap-2 lg:gap-4 items-end mt-4 lg:mt-0'>
-                        <Button className='px-6 lg:px-10 hover:bg-mediumBlue'>Hire</Button>
+                        <Link to={"/hire"}><Button className='px-6 lg:px-10 hover:bg-mediumBlue'>Hire</Button></Link>
                         <IoHeartCircleOutline size={32} lg:size={40} />
                     </div>
                 </div>

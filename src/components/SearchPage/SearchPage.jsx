@@ -12,7 +12,7 @@ function SearchPage() {
 
   const items = [
     { value: "all", label: "All" },
-    { value: "house_cleaning", label: "House Cleaning" },
+    { value: "home_services", label: "Home Services" },
     { value: "carpentry", label: "Carpentry" },
     { value: "electrician", label: "Electrician" },
     { value: "plumbing", label: "Plumbing" },
@@ -24,7 +24,7 @@ function SearchPage() {
   const [selectedRating, setSelectedRating] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
   return (
-    <div className="flex flex-col rounded-none px-4 md:px-12  bg-white">
+    <div className="flex flex-col rounded-none px-4 md:px-12  bg-white my-10">
       <div className="flex">
         <div className="flex overflow-hidden gap-2.5 md:mb-2 self-start px-4 py-3 text-sm tracking-wide whitespace-nowrap border border-gray-200 border-solid rounded-[160px] text-stone-500">
           <img

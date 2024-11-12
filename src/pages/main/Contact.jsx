@@ -12,7 +12,7 @@ function Contact() {
     ];
 
     return (
-        <div className="w-full min-h-screen flex flex-col items-center ">
+        <div className="w-full min-h-screen flex flex-col items-center  mt-20">
             <div className="w-11/12 lg:w-4/5 mb-20 flex flex-col mx-auto relative ">
                 {/* Intro Section */}
                 <div className="bg-lightBlack text-white rounded-t-md lg:h-[30vh] flex items-end p-5">
