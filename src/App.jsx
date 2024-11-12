@@ -27,6 +27,8 @@ import RequestHistory from './pages/main/RequestHistory'
 import Requests from './pages/dashboard/Requests'
 import Profile from './pages/dashboard/Profile'
 import Test from './pages/main/Test'
+import Services from './pages/main/Services'
+import NotFound from './pages/main/NotFound'
 
 const App = () => {
 
@@ -49,7 +51,7 @@ const App = () => {
           {/* Testing page inside mainLayout */}
           <Route path="test" element={<Test />} />
           
-          {/* <Route path="services" element={<Services />} /> */}
+          <Route path="services" element={<Services />} />
           <Route path="contact" element={<Contact />} />
         </Route>
 
@@ -71,7 +73,7 @@ const App = () => {
           <Route path='requests' element={<Requests/>} />
         </Route>
 
-        <Route path="*" element={<h2>Not found</h2>} />
+        <Route path="*" element={<NotFound/>} />
       </Routes>
     </AuthProvider>
   )

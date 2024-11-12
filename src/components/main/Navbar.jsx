@@ -111,7 +111,7 @@ const Navbar = () => {
             <div className="hidden md:flex gap-4 items-center">
               {isLoggedIn ? (
                 <>
-                  <Link to="/profile" className=''><User /></Link>
+                  <Link to="/home" className=''><User /></Link>
                   <button onClick={handleLogout} className='flex items-center gap-1'>
                     <LogOut />
                     <span>Logout</span>

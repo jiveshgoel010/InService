@@ -4,16 +4,16 @@ import { Target, Lightbulb } from 'lucide-react'
 
 const About = () => {
   return (
-    <div className="bg-White min-h-screen">
-      <div className="w-full bg-lightBlue rounded-2xl text-white mb-10">
-  <div className="w-4/5 mx-auto flex justify-center items-center h-[80vh] sm:h-[100vh] md:h-[100vh] lg:h-screen">
-    <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center px-4">
-      We stand firm in our belief that digital should not be a
-      distraction; instead, it should act as an enabler of
-      human potential.
-    </p>
-  </div>
-</div>
+    <div className="bg-White min-h-screen p-10">
+      <div className=" bg-lightBlue rounded-2xl text-white mb-10">
+        <div className="w-4/5 mx-auto flex justify-center items-center h-[80vh] sm:h-[100vh] md:h-[100vh] lg:h-screen">
+          <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center px-4">
+            We stand firm in our belief that digital should not be a
+            distraction; instead, it should act as an enabler of
+            human potential.
+          </p>
+        </div>
+      </div>
 
       <div className="w-4/5 h-full mx-auto gap-10 flex flex-col items-center justify-center">
         <div className="flex flex-col lg:flex-row gap-10 mb-10">

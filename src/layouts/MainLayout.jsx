@@ -8,8 +8,8 @@ import { BackgroundBeams } from '@/components/ui/background-beams';
 const MainLayout = () => {
     return (
         <>
+            <BackgroundBeams className="-z-10" />
             <div>
-                <BackgroundBeams className="-z-10" />
                 <Navbar />
                 <main >
                     <Outlet />

@@ -309,7 +309,7 @@ const SignupForm = () => {
         {/* Sign In Link */}
         <div className={`font-semibold mt-2`}>
           <span>Already a member? </span>
-          <Link to="/signin" className="text-mediumBlue underline">
+          <Link to="/login" className="text-mediumBlue underline">
             Sign in
           </Link>
         </div>

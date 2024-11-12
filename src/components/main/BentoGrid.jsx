@@ -12,7 +12,7 @@ const cardsData = [
 
 function BentoGrid() {
     return (
-        <div className='rounded-2xl border'>
+        <div className='rounded-2xl border w-full'>
             {/* <section className=""> */}
             <div className="py-4 px-2 mx-auto max-w-screen-xl sm:py-4 lg:px-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4 h-full">
