@@ -25,8 +25,8 @@ export default function SigninForm() {
     try {
       const url =
         userType === "Client"
-          ? "http://localhost:8000/api/v1/clients/login"
-          : "http://localhost:8000/api/v1/vendors/login";
+          ? "https://inservice-backend.vercel.app/api/v1/clients/login"
+          : "https://inservice-backend.vercel.app/api/v1/vendors/login";
 
       const loginReturn = await axios
         .post(url, { filteredData })
