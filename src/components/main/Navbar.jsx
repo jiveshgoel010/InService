@@ -147,7 +147,7 @@ const Navbar = () => {
 
                         {urlFriendlyServices.map((service, index) => (
                           <DropdownMenuItem key={index}>
-                            <Link to={`/services/${service}`}>{mainServices[index]}</Link>
+                            <Link to={`/search/${service}`}>{mainServices[index]}</Link>
                           </DropdownMenuItem>
                         ))}
                       </DropdownMenuContent>

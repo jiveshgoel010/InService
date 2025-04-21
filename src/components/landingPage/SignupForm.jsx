@@ -65,8 +65,8 @@ const SignupForm = () => {
     try {
       const url =
         data.userType === "Client"
-          ? "http://localhost:8000/api/v1/clients/signup"
-          : "http://localhost:8000/api/v1/vendors/signup";
+          ? "https://inservice-backend.vercel.app/api/v1/clients/signup"
+          : "https://inservice-backend.vercel.app/api/v1/vendors/signup";
 
          
 
